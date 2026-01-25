@@ -1,0 +1,15 @@
+0.7
+2020.2
+Oct 13 2023
+20:21:30
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/ADD/sim/ADD.v,1769258023,verilog,,/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/SUB/sim/SUB.v,,ADD,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/EXP/sim/EXP.v,1769087237,verilog,,/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/ADD/sim/ADD.v,,EXP,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/MUL/sim/MUL.v,1769079412,verilog,,/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/EXP/sim/EXP.v,,MUL,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/SUB/sim/SUB.v,1769079934,verilog,,,,SUB,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sim_1/new/AttentionCore_tb.sv,1769332961,systemVerilog,,,,tb_AttentionCore,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sim_1/new/L1dist_tb.sv,1769325400,systemVerilog,,,,L1dist_tb,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sim_1/new/fusedAcc_tb.sv,1769261619,systemVerilog,,,,fusedAcc_tb,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/AttentionCore.sv,1769335942,systemVerilog,,/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/L1dist.sv,,AttentionCore,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/L1dist.sv,1769330269,systemVerilog,,/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/fusedAcc.sv,,L1dist,,uvm,,,,,,
+/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/fusedAcc.sv,1769330063,systemVerilog,,/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sim_1/new/AttentionCore_tb.sv,,fusedAcc,,uvm,,,,,,
