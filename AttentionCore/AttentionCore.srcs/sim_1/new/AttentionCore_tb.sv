@@ -4,20 +4,21 @@ module tb_AttentionCore;
 
     // 1. Parameters
     parameter DATA_WIDTH = 32;
-    parameter H=4;
+    parameter MAX_H=64;
 
     // 2. Signals
     logic clk;
     logic val;
-    logic [DATA_WIDTH-1:0] q[0:H-1], k[0:H-1], v[0:H-1];
+    logic [DATA_WIDTH-1:0] q[0:MAX_H-1], k[0:MAX_H-1], v[0:MAX_H-1];
+    logic [$clog2(MAX_H)-1:0] H;
     
-    logic [DATA_WIDTH-1:0] s, z[0:H-1];
+    logic [DATA_WIDTH-1:0] s, z[0:MAX_H-1],scale;
     logic sDone,zDone;
 
     // 3. Instantiate the Unit Under Test (UUT)
     AttentionCore #(
         .DATA_WIDTH(DATA_WIDTH),
-        .MAX_H(H)
+        .MAX_H(MAX_H)
     ) uut (
         .clk(clk),
         .val(val),
@@ -25,6 +26,7 @@ module tb_AttentionCore;
         .k(k),
         .v(v),
         .H(H),
+        .scale(scale),
         
         .s(s),
         .z(z),
@@ -42,6 +44,7 @@ module tb_AttentionCore;
     initial begin
         // Initialize Inputs
         val = 0;
+        scale=$shortrealtobits(-3.0);
         
         for(int i=0;i<H;i++)begin
             q[i] = 0; k[i] = 0; v[i] = 0;
@@ -60,7 +63,7 @@ module tb_AttentionCore;
         // Use Non-Blocking Assignments (<=) to avoid race conditions
         
         for(int i=0;i<H;i++)begin
-            q[i]   <= $shortrealtobits(10.0-i);
+            q[i]   <= $shortrealtobits(8.0-i);
             k[i]   <= $shortrealtobits(2.0+i);
             v[i]   <= $shortrealtobits(5.0-i);
         end

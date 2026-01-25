@@ -22,18 +22,19 @@
 
 module L1dist#(
     parameter DATA_WIDTH=32,
-    parameter H=64,
+    parameter MAX_H=64,
     
     parameter zero=$shortrealtobits(0.0)
 )(
     input logic clk,val,
-    input logic [DATA_WIDTH-1:0] A[0:H-1], B[0:H-1],
+    input logic [DATA_WIDTH-1:0] A[0:MAX_H-1], B[0:MAX_H-1],
+    input logic [$clog2(MAX_H)-1:0] H,
     
     output logic done,
     output logic [DATA_WIDTH-1:0] c
     );
     
-    logic [$clog2(H):0] cnt;
+    logic [$clog2(MAX_H):0] cnt;
     logic fusedVal,fusedDone,valBuff;
     logic [DATA_WIDTH-1:0] fusedA,fusedB,fusedC,fusedOut;
     
