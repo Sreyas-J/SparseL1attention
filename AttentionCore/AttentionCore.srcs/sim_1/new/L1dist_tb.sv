@@ -4,32 +4,20 @@ module L1dist_tb;
 
     // 1. Parameters
     parameter DATA_WIDTH = 32;
-    parameter H=4;
+    parameter MAX_H=4;
 
     // 2. Signals
     logic clk;
     logic val;
-    logic [DATA_WIDTH-1:0] A [0:H-1],B [0:H-1];
+    logic [DATA_WIDTH-1:0] A [0:MAX_H-1],B [0:MAX_H-1];
+    logic [$clog2(MAX_H):0] H;
     
     logic [DATA_WIDTH-1:0] c;
     logic done;
-
-    // 3. Instantiate the Unit Under Test (UUT)
-//    fusedAcc#(
-//    .DATA_WIDTH(DATA_WIDTH)
-//    ) uut (
-//        .clk(clk),
-//        .val(val),
-//        .a(a),
-//        .b(b),
-//        .c(c),
-//        .done(done),
-//        .out(out)
-//    );
     
     L1dist#(
         .DATA_WIDTH(DATA_WIDTH),
-        .H(H)
+        .MAX_H(MAX_H)
         
 //        parameter zero=$shortrealtobits(0.0)
     ) uut (
@@ -37,6 +25,7 @@ module L1dist_tb;
         .val(val),
         .A(A),
         .B(B),
+        .H(H),
         
         .done(done),
         .c(c)
@@ -52,6 +41,7 @@ module L1dist_tb;
     initial begin
         // Initialize Inputs
         val = 0;
+        H=4;
         
         for(int i=0;i<H;i++)begin
             A[i] = 0; B[i] = 0;
@@ -89,16 +79,6 @@ module L1dist_tb;
             B[i]   <= $shortrealtobits(2.0+i);
         end
         val<=1;
-//        // val stays 1
-        
-//        // ---------------------------------------------------------
-//        // Test Case 3: Change inputs again
-//        // ---------------------------------------------------------
-//        @(posedge clk);
-//        for(int i=0;i<H;i++)begin
-//            A[i]   <= $shortrealtobits(2.0+i);
-//            B[i]   <= $shortrealtobits(1.5+i);
-//        end
         
         // End Valid pulse
          @(posedge clk);

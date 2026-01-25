@@ -28,7 +28,7 @@ module L1dist#(
 )(
     input logic clk,val,
     input logic [DATA_WIDTH-1:0] A[0:MAX_H-1], B[0:MAX_H-1],
-    input logic [$clog2(MAX_H)-1:0] H,
+    input logic [$clog2(MAX_H):0] H,
     
     output logic done,
     output logic [DATA_WIDTH-1:0] c
@@ -51,10 +51,7 @@ module L1dist#(
     );
     
     always_ff@(posedge clk)begin
-        if(!done)begin
-            
-//            if(val) cnt<=1; 
-            
+        if(!done)begin            
             if(cnt!=0)begin
                 if(fusedVal) cnt<=cnt+1;
             end    
@@ -64,30 +61,28 @@ module L1dist#(
         if(val)begin
             done<=0;
             cnt<=1;
-        end
-        
+        end     
         else if(cnt==H+1) done<=1;
+        
+        if(done)begin
+            done<=0;
+            cnt<=0;
+        end
     end
     
     always_comb begin
-        
-//        if(val) done=0;
-        
-//        if(!done)begin
-            if(valBuff || fusedDone) fusedVal=1;
-            else fusedVal=0; 
-//        end
+
+        if(valBuff || fusedDone) fusedVal=1;
+        else fusedVal=0; 
         
         if(cnt==1) fusedC=zero;
         else fusedC=fusedOut;
         
         fusedA=A[cnt-1];
         fusedB=B[cnt-1];
-        
-//        if(done)begin
-            c=fusedOut;
-//                done=1;
-//        end
+
+        c=fusedOut;
+
     end
     
 endmodule

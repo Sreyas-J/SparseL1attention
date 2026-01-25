@@ -28,7 +28,7 @@ module AttentionCore#(
     )(
         input logic clk,val,
         input logic [DATA_WIDTH-1:0] q[0:MAX_H-1],k[0:MAX_H-1],v[0:MAX_H-1],
-        input logic [$clog2(MAX_H)-1:0] H,
+        input logic [$clog2(MAX_H):0] H,
         input logic [DATA_WIDTH-1:0] scale,
         
         output logic [DATA_WIDTH-1:0] s,z [0:MAX_H-1],
@@ -36,10 +36,11 @@ module AttentionCore#(
     );
         logic [DATA_WIDTH-1:0] c,scaled;
         logic l1Val,mulVal,expVal,l1Ready,mulReady,expReady,scaleVal,scaleReady;
+        logic mulReadyBuff,expReadyBuff,scaleReadyBuff;
         
         L1dist#(
             .DATA_WIDTH(DATA_WIDTH),
-            .H(MAX_H),
+            .MAX_H(MAX_H),
             .zero(zero)
         ) L1 (
             .clk(clk),
@@ -106,13 +107,21 @@ module AttentionCore#(
           .m_axis_result_tdata(z[MAX_H-1])    // output wire [31 : 0] m_axis_result_tdata
         );
         
+        
+        always_ff@(posedge clk)begin
+            mulReadyBuff<=mulReady;
+            expReadyBuff<=expReady; 
+            scaleReadyBuff<=scaleReady;   
+        end
+        
+        
         always_comb begin
             l1Val=val;
             scaleVal=l1Ready;
-            expVal=scaleReady;
-            mulVal=expReady;
-            sDone=expReady;
-            zDone=mulReady;          
+            expVal=(scaleReady && !scaleReadyBuff);
+            mulVal=(expReady && !expReadyBuff);
+            sDone=mulVal;
+            zDone=(mulReady && !mulReadyBuff);          
         end
         
 endmodule

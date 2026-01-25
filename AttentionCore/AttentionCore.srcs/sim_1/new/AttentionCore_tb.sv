@@ -10,7 +10,7 @@ module tb_AttentionCore;
     logic clk;
     logic val;
     logic [DATA_WIDTH-1:0] q[0:MAX_H-1], k[0:MAX_H-1], v[0:MAX_H-1];
-    logic [$clog2(MAX_H)-1:0] H;
+    logic [$clog2(MAX_H):0] H;
     
     logic [DATA_WIDTH-1:0] s, z[0:MAX_H-1],scale;
     logic sDone,zDone;
@@ -44,6 +44,7 @@ module tb_AttentionCore;
     initial begin
         // Initialize Inputs
         val = 0;
+        H=4;
         scale=$shortrealtobits(-3.0);
         
         for(int i=0;i<H;i++)begin

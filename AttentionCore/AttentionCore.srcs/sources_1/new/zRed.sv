@@ -22,11 +22,11 @@
 
 module zRed#(
     parameter DATA_WIDTH=32,
-    parameter W_MAX=256,  
-    parameter H=64
+    parameter MAX_W=256,  
+    parameter MAX_H=64
 )(
     input logic clk,
     
-    input logic [DATA_WIDTH-1:0] Z [0:H-1]
+    input logic [DATA_WIDTH-1:0] Z [0:MAX_H-1]
     );
 endmodule
