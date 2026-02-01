@@ -27,15 +27,15 @@ module L1dist#(
     parameter zero=$shortrealtobits(0.0)
 )(
     input logic clk,val,
-    input logic [DATA_WIDTH-1:0] A[0:MAX_H-1], B[0:MAX_H-1],
+    input logic [DATA_WIDTH-1:0] A, B,
     input logic [$clog2(MAX_H):0] H,
     
+    output logic [$clog2(MAX_H):0] cnt,
     output logic done,
     output logic [DATA_WIDTH-1:0] c
     );
     
-    logic [$clog2(MAX_H):0] cnt;
-    logic fusedVal,fusedDone,valBuff;
+    logic fusedVal,fusedDone,valBuff,flg;
     logic [DATA_WIDTH-1:0] fusedA,fusedB,fusedC,fusedOut;
     
     fusedAcc#(
@@ -51,18 +51,21 @@ module L1dist#(
     );
     
     always_ff@(posedge clk)begin
-        if(!done)begin            
-            if(cnt!=0)begin
+//        if(!done)begin            
+//            if(cnt!=0 || valBuff)begin
                 if(fusedVal) cnt<=cnt+1;
-            end    
-        end
+//            end    
+//        end
         
         valBuff<=val;
         if(val)begin
             done<=0;
-            cnt<=1;
+            cnt<=0;
+            flg<=0;
         end     
         else if(cnt==H+1) done<=1;
+        
+        if(cnt==H-1)flg<=1;
         
         if(done)begin
             done<=0;
@@ -72,16 +75,18 @@ module L1dist#(
     
     always_comb begin
 
-        if(valBuff || fusedDone) fusedVal=1;
+        if(valBuff || fusedDone && !done) fusedVal=1;
         else fusedVal=0; 
         
-        if(cnt==1) fusedC=zero;
+        if(valBuff) fusedC=zero;
         else fusedC=fusedOut;
         
-        fusedA=A[cnt-1];
-        fusedB=B[cnt-1];
+        fusedA=A;
+        fusedB=B;
 
         c=fusedOut;
+//        if(cnt>H) en=0;
+//        else en=1;
 
     end
     

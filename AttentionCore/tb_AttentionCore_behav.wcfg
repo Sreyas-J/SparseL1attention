@@ -3,39 +3,40 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_AttentionCore_behav.wdb" id="1">
+      <db_ref path="zProd_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_AttentionCore" />
+            <top_module name="zProd_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="445.001 ns"></ZoomEndTime>
-      <Cursor1Time time="335.000 ns"></Cursor1Time>
+      <ZoomEndTime time="177.227 ns"></ZoomEndTime>
+      <Cursor1Time time="124.121 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="154"></NameColumnWidth>
-      <ValueColumnWidth column_width="173"></ValueColumnWidth>
+      <NameColumnWidth column_width="164"></NameColumnWidth>
+      <ValueColumnWidth column_width="171"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
-   <wvobject type="logic" fp_name="/tb_AttentionCore/clk">
+   <WVObjectSize size="10" />
+   <wvobject type="logic" fp_name="/zProd_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/val">
+   <wvobject type="logic" fp_name="/zProd_tb/val">
       <obj_property name="ElementShortName">val</obj_property>
       <obj_property name="ObjectShortName">val</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_AttentionCore/q">
-      <obj_property name="ElementShortName">q[0:63][31:0]</obj_property>
-      <obj_property name="ObjectShortName">q[0:63][31:0]</obj_property>
+   <wvobject type="array" fp_name="/zProd_tb/S">
+      <obj_property name="ElementShortName">S[0:15][31:0]</obj_property>
+      <obj_property name="ObjectShortName">S[0:15][31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">24</obj_property>
       <obj_property name="radix_otherWidth">8</obj_property>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[0]">
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/zProd_tb/S[0]">
          <obj_property name="ElementShortName">[0][31:0]</obj_property>
          <obj_property name="ObjectShortName">[0][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -43,7 +44,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[1]">
+      <wvobject type="array" fp_name="/zProd_tb/S[1]">
          <obj_property name="ElementShortName">[1][31:0]</obj_property>
          <obj_property name="ObjectShortName">[1][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -51,7 +52,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[2]">
+      <wvobject type="array" fp_name="/zProd_tb/S[2]">
          <obj_property name="ElementShortName">[2][31:0]</obj_property>
          <obj_property name="ObjectShortName">[2][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -59,7 +60,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[3]">
+      <wvobject type="array" fp_name="/zProd_tb/S[3]">
          <obj_property name="ElementShortName">[3][31:0]</obj_property>
          <obj_property name="ObjectShortName">[3][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -67,597 +68,172 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[4]">
+      <wvobject type="array" fp_name="/zProd_tb/S[4]">
          <obj_property name="ElementShortName">[4][31:0]</obj_property>
          <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[5]">
+      <wvobject type="array" fp_name="/zProd_tb/S[5]">
          <obj_property name="ElementShortName">[5][31:0]</obj_property>
          <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[6]">
+      <wvobject type="array" fp_name="/zProd_tb/S[6]">
          <obj_property name="ElementShortName">[6][31:0]</obj_property>
          <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[7]">
+      <wvobject type="array" fp_name="/zProd_tb/S[7]">
          <obj_property name="ElementShortName">[7][31:0]</obj_property>
          <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[8]">
+      <wvobject type="array" fp_name="/zProd_tb/S[8]">
          <obj_property name="ElementShortName">[8][31:0]</obj_property>
          <obj_property name="ObjectShortName">[8][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[9]">
+      <wvobject type="array" fp_name="/zProd_tb/S[9]">
          <obj_property name="ElementShortName">[9][31:0]</obj_property>
          <obj_property name="ObjectShortName">[9][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[10]">
+      <wvobject type="array" fp_name="/zProd_tb/S[10]">
          <obj_property name="ElementShortName">[10][31:0]</obj_property>
          <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[11]">
+      <wvobject type="array" fp_name="/zProd_tb/S[11]">
          <obj_property name="ElementShortName">[11][31:0]</obj_property>
          <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[12]">
+      <wvobject type="array" fp_name="/zProd_tb/S[12]">
          <obj_property name="ElementShortName">[12][31:0]</obj_property>
          <obj_property name="ObjectShortName">[12][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[13]">
+      <wvobject type="array" fp_name="/zProd_tb/S[13]">
          <obj_property name="ElementShortName">[13][31:0]</obj_property>
          <obj_property name="ObjectShortName">[13][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[14]">
+      <wvobject type="array" fp_name="/zProd_tb/S[14]">
          <obj_property name="ElementShortName">[14][31:0]</obj_property>
          <obj_property name="ObjectShortName">[14][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[15]">
+      <wvobject type="array" fp_name="/zProd_tb/S[15]">
          <obj_property name="ElementShortName">[15][31:0]</obj_property>
          <obj_property name="ObjectShortName">[15][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[16]">
-         <obj_property name="ElementShortName">[16][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[16][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[17]">
-         <obj_property name="ElementShortName">[17][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[17][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[18]">
-         <obj_property name="ElementShortName">[18][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[18][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[19]">
-         <obj_property name="ElementShortName">[19][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[19][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[20]">
-         <obj_property name="ElementShortName">[20][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[20][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[21]">
-         <obj_property name="ElementShortName">[21][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[21][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[22]">
-         <obj_property name="ElementShortName">[22][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[22][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[23]">
-         <obj_property name="ElementShortName">[23][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[23][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[24]">
-         <obj_property name="ElementShortName">[24][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[24][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[25]">
-         <obj_property name="ElementShortName">[25][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[25][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[26]">
-         <obj_property name="ElementShortName">[26][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[26][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[27]">
-         <obj_property name="ElementShortName">[27][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[27][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[28]">
-         <obj_property name="ElementShortName">[28][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[28][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[29]">
-         <obj_property name="ElementShortName">[29][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[29][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[30]">
-         <obj_property name="ElementShortName">[30][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[30][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[31]">
-         <obj_property name="ElementShortName">[31][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[31][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[32]">
-         <obj_property name="ElementShortName">[32][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[32][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[33]">
-         <obj_property name="ElementShortName">[33][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[33][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[34]">
-         <obj_property name="ElementShortName">[34][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[34][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[35]">
-         <obj_property name="ElementShortName">[35][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[35][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[36]">
-         <obj_property name="ElementShortName">[36][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[36][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[37]">
-         <obj_property name="ElementShortName">[37][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[37][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[38]">
-         <obj_property name="ElementShortName">[38][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[38][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[39]">
-         <obj_property name="ElementShortName">[39][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[39][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[40]">
-         <obj_property name="ElementShortName">[40][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[40][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[41]">
-         <obj_property name="ElementShortName">[41][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[41][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[42]">
-         <obj_property name="ElementShortName">[42][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[42][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[43]">
-         <obj_property name="ElementShortName">[43][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[43][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[44]">
-         <obj_property name="ElementShortName">[44][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[44][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[45]">
-         <obj_property name="ElementShortName">[45][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[45][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[46]">
-         <obj_property name="ElementShortName">[46][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[46][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[47]">
-         <obj_property name="ElementShortName">[47][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[47][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[48]">
-         <obj_property name="ElementShortName">[48][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[48][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[49]">
-         <obj_property name="ElementShortName">[49][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[49][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[50]">
-         <obj_property name="ElementShortName">[50][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[50][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[51]">
-         <obj_property name="ElementShortName">[51][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[51][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[52]">
-         <obj_property name="ElementShortName">[52][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[52][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[53]">
-         <obj_property name="ElementShortName">[53][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[53][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[54]">
-         <obj_property name="ElementShortName">[54][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[54][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[55]">
-         <obj_property name="ElementShortName">[55][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[55][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[56]">
-         <obj_property name="ElementShortName">[56][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[56][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[57]">
-         <obj_property name="ElementShortName">[57][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[57][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[58]">
-         <obj_property name="ElementShortName">[58][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[58][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[59]">
-         <obj_property name="ElementShortName">[59][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[59][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[60]">
-         <obj_property name="ElementShortName">[60][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[60][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[61]">
-         <obj_property name="ElementShortName">[61][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[61][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[62]">
-         <obj_property name="ElementShortName">[62][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[62][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/q[63]">
-         <obj_property name="ElementShortName">[63][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[63][31:0]</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_AttentionCore/k">
-      <obj_property name="ElementShortName">k[0:63][31:0]</obj_property>
-      <obj_property name="ObjectShortName">k[0:63][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[0]">
-         <obj_property name="ElementShortName">[0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[1]">
-         <obj_property name="ElementShortName">[1][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/zProd_tb/vin_from_bram">
+      <obj_property name="ElementShortName">vin_from_bram[31:0]</obj_property>
+      <obj_property name="ObjectShortName">vin_from_bram[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/zProd_tb/uut/cnt">
+      <obj_property name="ElementShortName">cnt[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/zProd_tb/uut/ready">
+      <obj_property name="ElementShortName">ready[0:3][0:3]</obj_property>
+      <obj_property name="ObjectShortName">ready[0:3][0:3]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/zProd_tb/uut/readyBuff">
+      <obj_property name="ElementShortName">readyBuff</obj_property>
+      <obj_property name="ObjectShortName">readyBuff</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/zProd_tb/uut_addr">
+      <obj_property name="ElementShortName">uut_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">uut_addr[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/zProd_tb/prod">
+      <obj_property name="ElementShortName">prod[0:3][0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">prod[0:3][0:3][31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/zProd_tb/prod[0]">
+         <obj_property name="ElementShortName">[0][0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][0:3][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[2]">
-         <obj_property name="ElementShortName">[2][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+      <wvobject type="array" fp_name="/zProd_tb/prod[1]">
+         <obj_property name="ElementShortName">[1][0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][0:3][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[3]">
-         <obj_property name="ElementShortName">[3][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+      <wvobject type="array" fp_name="/zProd_tb/prod[2]">
+         <obj_property name="ElementShortName">[2][0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][0:3][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[4]">
-         <obj_property name="ElementShortName">[4][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[4][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[5]">
-         <obj_property name="ElementShortName">[5][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[5][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[6]">
-         <obj_property name="ElementShortName">[6][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[6][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[7]">
-         <obj_property name="ElementShortName">[7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[7][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[8]">
-         <obj_property name="ElementShortName">[8][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[8][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[9]">
-         <obj_property name="ElementShortName">[9][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[9][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[10]">
-         <obj_property name="ElementShortName">[10][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[10][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[11]">
-         <obj_property name="ElementShortName">[11][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[11][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[12]">
-         <obj_property name="ElementShortName">[12][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[12][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[13]">
-         <obj_property name="ElementShortName">[13][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[13][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[14]">
-         <obj_property name="ElementShortName">[14][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[14][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[15]">
-         <obj_property name="ElementShortName">[15][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[15][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[16]">
-         <obj_property name="ElementShortName">[16][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[16][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[17]">
-         <obj_property name="ElementShortName">[17][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[17][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[18]">
-         <obj_property name="ElementShortName">[18][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[18][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[19]">
-         <obj_property name="ElementShortName">[19][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[19][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[20]">
-         <obj_property name="ElementShortName">[20][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[20][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[21]">
-         <obj_property name="ElementShortName">[21][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[21][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[22]">
-         <obj_property name="ElementShortName">[22][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[22][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[23]">
-         <obj_property name="ElementShortName">[23][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[23][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[24]">
-         <obj_property name="ElementShortName">[24][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[24][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[25]">
-         <obj_property name="ElementShortName">[25][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[25][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[26]">
-         <obj_property name="ElementShortName">[26][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[26][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[27]">
-         <obj_property name="ElementShortName">[27][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[27][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[28]">
-         <obj_property name="ElementShortName">[28][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[28][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[29]">
-         <obj_property name="ElementShortName">[29][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[29][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[30]">
-         <obj_property name="ElementShortName">[30][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[30][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[31]">
-         <obj_property name="ElementShortName">[31][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[31][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[32]">
-         <obj_property name="ElementShortName">[32][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[32][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[33]">
-         <obj_property name="ElementShortName">[33][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[33][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[34]">
-         <obj_property name="ElementShortName">[34][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[34][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[35]">
-         <obj_property name="ElementShortName">[35][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[35][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[36]">
-         <obj_property name="ElementShortName">[36][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[36][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[37]">
-         <obj_property name="ElementShortName">[37][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[37][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[38]">
-         <obj_property name="ElementShortName">[38][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[38][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[39]">
-         <obj_property name="ElementShortName">[39][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[39][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[40]">
-         <obj_property name="ElementShortName">[40][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[40][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[41]">
-         <obj_property name="ElementShortName">[41][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[41][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[42]">
-         <obj_property name="ElementShortName">[42][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[42][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[43]">
-         <obj_property name="ElementShortName">[43][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[43][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[44]">
-         <obj_property name="ElementShortName">[44][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[44][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[45]">
-         <obj_property name="ElementShortName">[45][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[45][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[46]">
-         <obj_property name="ElementShortName">[46][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[46][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[47]">
-         <obj_property name="ElementShortName">[47][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[47][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[48]">
-         <obj_property name="ElementShortName">[48][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[48][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[49]">
-         <obj_property name="ElementShortName">[49][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[49][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[50]">
-         <obj_property name="ElementShortName">[50][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[50][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[51]">
-         <obj_property name="ElementShortName">[51][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[51][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[52]">
-         <obj_property name="ElementShortName">[52][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[52][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[53]">
-         <obj_property name="ElementShortName">[53][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[53][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[54]">
-         <obj_property name="ElementShortName">[54][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[54][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[55]">
-         <obj_property name="ElementShortName">[55][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[55][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[56]">
-         <obj_property name="ElementShortName">[56][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[56][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[57]">
-         <obj_property name="ElementShortName">[57][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[57][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[58]">
-         <obj_property name="ElementShortName">[58][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[58][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[59]">
-         <obj_property name="ElementShortName">[59][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[59][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[60]">
-         <obj_property name="ElementShortName">[60][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[60][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[61]">
-         <obj_property name="ElementShortName">[61][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[61][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[62]">
-         <obj_property name="ElementShortName">[62][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[62][31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_AttentionCore/k[63]">
-         <obj_property name="ElementShortName">[63][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[63][31:0]</obj_property>
+      <wvobject type="array" fp_name="/zProd_tb/prod[3]">
+         <obj_property name="ElementShortName">[3][0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][0:3][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/l1Val">
-      <obj_property name="ElementShortName">l1Val</obj_property>
-      <obj_property name="ObjectShortName">l1Val</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/l1Ready">
-      <obj_property name="ElementShortName">l1Ready</obj_property>
-      <obj_property name="ObjectShortName">l1Ready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/scaleVal">
-      <obj_property name="ElementShortName">scaleVal</obj_property>
-      <obj_property name="ObjectShortName">scaleVal</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/scaleReady">
-      <obj_property name="ElementShortName">scaleReady</obj_property>
-      <obj_property name="ObjectShortName">scaleReady</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/expVal">
-      <obj_property name="ElementShortName">expVal</obj_property>
-      <obj_property name="ObjectShortName">expVal</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/expReady">
-      <obj_property name="ElementShortName">expReady</obj_property>
-      <obj_property name="ObjectShortName">expReady</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/mulVal">
-      <obj_property name="ElementShortName">mulVal</obj_property>
-      <obj_property name="ObjectShortName">mulVal</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/uut/mulReady">
-      <obj_property name="ElementShortName">mulReady</obj_property>
-      <obj_property name="ObjectShortName">mulReady</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_AttentionCore/uut/c">
-      <obj_property name="ElementShortName">c[31:0]</obj_property>
-      <obj_property name="ObjectShortName">c[31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_AttentionCore/v">
-      <obj_property name="ElementShortName">v[0:63][31:0]</obj_property>
-      <obj_property name="ObjectShortName">v[0:63][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_AttentionCore/s">
-      <obj_property name="ElementShortName">s[31:0]</obj_property>
-      <obj_property name="ObjectShortName">s[31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_AttentionCore/z">
-      <obj_property name="ElementShortName">z[0:63][31:0]</obj_property>
-      <obj_property name="ObjectShortName">z[0:63][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/sDone">
-      <obj_property name="ElementShortName">sDone</obj_property>
-      <obj_property name="ObjectShortName">sDone</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_AttentionCore/zDone">
-      <obj_property name="ElementShortName">zDone</obj_property>
-      <obj_property name="ObjectShortName">zDone</obj_property>
+   <wvobject type="logic" fp_name="/zProd_tb/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
    </wvobject>
 </wave_config>

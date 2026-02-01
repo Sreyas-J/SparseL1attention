@@ -26,17 +26,25 @@ module AttentionCore#(
             
     parameter zero=$shortrealtobits(0.0)
     )(
-        input logic clk,val,
-        input logic [DATA_WIDTH-1:0] q[0:MAX_H-1],k[0:MAX_H-1],v[0:MAX_H-1],
+        input logic clk,val,we,en,
+        input logic [DATA_WIDTH-1:0] Qin,Kin,
+//        v[0:MAX_H-1],
         input logic [$clog2(MAX_H):0] H,
         input logic [DATA_WIDTH-1:0] scale,
+        input logic [$clog2(MAX_H)-1:0] addr,
         
-        output logic [DATA_WIDTH-1:0] s,z [0:MAX_H-1],
-        output logic zDone,sDone
+        output logic [DATA_WIDTH-1:0] s,
+//        z [0:MAX_H-1],
+        output logic sDone
+//        zDone
     );
-        logic [DATA_WIDTH-1:0] c,scaled;
-        logic l1Val,mulVal,expVal,l1Ready,mulReady,expReady,scaleVal,scaleReady;
-        logic mulReadyBuff,expReadyBuff,scaleReadyBuff;
+        logic [DATA_WIDTH-1:0] c,scaled,Qout,Kout;
+        logic l1Val,expVal,l1Ready,expReady,scaleVal,scaleReady;
+        logic [$clog2(MAX_H):0] cnt;
+        logic expReadyBuff,scaleReadyBuff;
+        logic [$clog2(MAX_H)-1:0] addra;
+//        mulVal,mulReady
+//        mulReadyBuff
         
         L1dist#(
             .DATA_WIDTH(DATA_WIDTH),
@@ -45,9 +53,10 @@ module AttentionCore#(
         ) L1 (
             .clk(clk),
             .val(l1Val),
-            .A(q),
-            .B(k),
+            .A(Qout),
+            .B(Kout),
             .H(H),
+            .cnt(cnt),
             
             .done(l1Ready),
             .c(c)
@@ -76,40 +85,27 @@ module AttentionCore#(
           .m_axis_result_tdata(s)    // output wire [31 : 0] m_axis_result_tdata
         );
         
-        genvar i;
-        generate
-        for(i=0;i<MAX_H-1;i++) begin           
-            MUL mul (
-              .aclk(clk),                                  // input wire aclk
-              .s_axis_a_tvalid(mulVal),            // input wire s_axis_a_tvalid
-              .s_axis_a_tready(),            // output wire s_axis_a_tready
-              .s_axis_a_tdata(v[i]),              // input wire [31 : 0] s_axis_a_tdata
-              .s_axis_b_tvalid(mulVal),            // input wire s_axis_b_tvalid
-              .s_axis_b_tready(),            // output wire s_axis_b_tready
-              .s_axis_b_tdata(s),              // input wire [31 : 0] s_axis_b_tdata
-              .m_axis_result_tvalid(),  // output wire m_axis_result_tvalid
-              .m_axis_result_tready(mulVal),  // input wire m_axis_result_tready
-              .m_axis_result_tdata(z[i])    // output wire [31 : 0] m_axis_result_tdata
-            );
-        end
-        endgenerate
+        Q q (
+          .clka(clk),    // input wire clka
+          .ena(en),      // input wire ena
+          .wea(we),      // input wire [0 : 0] wea
+          .addra(addra),  // input wire [1 : 0] addra
+          .dina(Qin),    // input wire [31 : 0] dina
+          .douta(Qout)  // output wire [31 : 0] douta
+        );
         
-        MUL mul (
-          .aclk(clk),                                  // input wire aclk
-          .s_axis_a_tvalid(mulVal),            // input wire s_axis_a_tvalid
-          .s_axis_a_tready(),            // output wire s_axis_a_tready
-          .s_axis_a_tdata(v[MAX_H-1]),              // input wire [31 : 0] s_axis_a_tdata
-          .s_axis_b_tvalid(mulVal),            // input wire s_axis_b_tvalid
-          .s_axis_b_tready(),            // output wire s_axis_b_tready
-          .s_axis_b_tdata(s),              // input wire [31 : 0] s_axis_b_tdata
-          .m_axis_result_tvalid(mulReady),  // output wire m_axis_result_tvalid
-          .m_axis_result_tready(mulVal),  // input wire m_axis_result_tready
-          .m_axis_result_tdata(z[MAX_H-1])    // output wire [31 : 0] m_axis_result_tdata
+        K k (
+          .clka(clk),    // input wire clka
+          .ena(en),      // input wire ena
+          .wea(we),      // input wire [0 : 0] wea
+          .addra(addra),  // input wire [1 : 0] addra
+          .dina(Kin),    // input wire [31 : 0] dina
+          .douta(Kout)  // output wire [31 : 0] douta
         );
         
         
         always_ff@(posedge clk)begin
-            mulReadyBuff<=mulReady;
+//            mulReadyBuff<=mulReady;
             expReadyBuff<=expReady; 
             scaleReadyBuff<=scaleReady;   
         end
@@ -119,9 +115,10 @@ module AttentionCore#(
             l1Val=val;
             scaleVal=l1Ready;
             expVal=(scaleReady && !scaleReadyBuff);
-            mulVal=(expReady && !expReadyBuff);
-            sDone=mulVal;
-            zDone=(mulReady && !mulReadyBuff);          
+            sDone=(expReady && !expReadyBuff);
+            
+            if(we) addra=addr;
+            else addra=cnt[$clog2(MAX_H)-1:0];          
         end
         
 endmodule

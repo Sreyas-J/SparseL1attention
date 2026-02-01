@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../AttentionCore.gen/sources_1/ip/MUL/sim/MUL.v" \
+
+sv xil_defaultlib  \
+"../../../../AttentionCore.srcs/sources_1/new/zProd.sv" \
+"../../../../AttentionCore.srcs/sim_1/new/tb_zProd.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

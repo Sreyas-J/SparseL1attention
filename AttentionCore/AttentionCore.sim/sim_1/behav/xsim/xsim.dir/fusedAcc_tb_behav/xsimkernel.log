@@ -1,4 +1,0 @@
-Running: xsim.dir/fusedAcc_tb_behav/xsimk -simmode gui -wdb fusedAcc_tb_behav.wdb -simrunnum 0 -socket 59325
-Design successfully loaded
-Design Loading Memory Usage: 28608 KB (Peak: 28616 KB)
-Design Loading CPU Usage: 40 ms

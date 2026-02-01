@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../AttentionCore.gen/sources_1/ip/ACC/sim/ACC.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

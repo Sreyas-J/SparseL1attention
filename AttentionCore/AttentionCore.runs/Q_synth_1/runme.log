@@ -1,0 +1,23 @@
+
+*** Running vivado
+    with args -log Q.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Q.tcl
+
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source Q.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1362.754 ; gain = 44.836 ; free physical = 54961 ; free virtual = 61344
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: Q
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry ff3c334d8614bfd6 to dir: /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/Q_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.cache/ip/2023.2/f/f/ff3c334d8614bfd6/Q.dcp to /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/Q_synth_1/Q.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.cache/ip/2023.2/f/f/ff3c334d8614bfd6/Q_sim_netlist.v to /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/Q_synth_1/Q_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.cache/ip/2023.2/f/f/ff3c334d8614bfd6/Q_stub.v to /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/Q_synth_1/Q_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.cache/ip/2023.2/f/f/ff3c334d8614bfd6/Q_sim_netlist.vhdl to /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/Q_synth_1/Q_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.cache/ip/2023.2/f/f/ff3c334d8614bfd6/Q_stub.vhdl to /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/Q_synth_1/Q_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP Q, cache-ID = ff3c334d8614bfd6.
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 31 22:54:19 2026...
