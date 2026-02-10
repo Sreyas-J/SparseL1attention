@@ -36,8 +36,8 @@ module zProd#(
     output logic done
     );
     
-    logic [$clog2(MAX_W*2):0] cnt;
-    logic ready[0:MAX_W*2-1],readyBuff,startFlg,mulVal;
+    logic [$clog2(MAX_W*2)+1:0] cnt;
+    logic startFlg,mulVal;
 //    logic [DATA_WIDTH-1:0] prodB [0:GRPS-1][0:MAX_H-1];
     
     genvar i;
@@ -52,7 +52,7 @@ module zProd#(
                   .s_axis_b_tvalid(mulVal),            // input wire s_axis_b_tvalid
                   .s_axis_b_tready(),            // output wire s_axis_b_tready
                   .s_axis_b_tdata(S[i]),              // input wire [31 : 0] s_axis_b_tdata
-                  .m_axis_result_tvalid(ready[i]),  // output wire m_axis_result_tvalid
+                  .m_axis_result_tvalid(),  // output wire m_axis_result_tvalid
                   .m_axis_result_tready(mulVal),  // input wire m_axis_result_tready
                   .m_axis_result_tdata(prod[i])    // output wire [31 : 0] m_axis_result_tdata
                 );
@@ -61,18 +61,22 @@ module zProd#(
     endgenerate
     
     always_ff@(posedge clk)begin
-        readyBuff<=ready[0];
+//        readyBuff<=ready[0];
         if(!val && !startFlg)begin
             done<=0;
             cnt<=0;
         end
         if(val) cnt<=1;
         
-        if(cnt==H+1) done<=1;
-        else if(cnt>0) cnt<=cnt+1; 
+        if(cnt==H-1) done<=1;
+        
+        if(cnt>0)begin
+            if(cnt<H+2) cnt<=cnt+1;
+            else cnt<=0;
+        end 
         
         if(done)begin
-            cnt<=0;
+//            cnt<=0;
             done<=0;
         end
     end 

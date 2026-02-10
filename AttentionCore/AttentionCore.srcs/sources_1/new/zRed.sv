@@ -33,7 +33,7 @@ module zRed#(
     input logic clk,val,
     
 //    (* dont_touch = "true" *) 
-    input logic [DATA_WIDTH-1:0] Z [0:MAX_W*2-1][0:MAX_H-1],
+    input logic [DATA_WIDTH-1:0] Z [0:GRPS-1][0:MAX_H-1],
     input logic [$clog2(MAX_H):0] H,
 //    input logic [$clog2(MAX_H)+$clog2(MAX_W)+1:0] grps,
 //    input logic [$clog2(MAX_W):0] W,

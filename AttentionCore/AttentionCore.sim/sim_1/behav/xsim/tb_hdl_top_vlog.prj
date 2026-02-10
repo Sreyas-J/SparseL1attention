@@ -1,5 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
+"../../../../AttentionCore.gen/sources_1/ip/Z/sim/Z.v" \
 "../../../../AttentionCore.gen/sources_1/ip/V/sim/V.v" \
 "../../../../AttentionCore.gen/sources_1/ip/K/sim/K.v" \
 "../../../../AttentionCore.gen/sources_1/ip/Q/sim/Q.v" \

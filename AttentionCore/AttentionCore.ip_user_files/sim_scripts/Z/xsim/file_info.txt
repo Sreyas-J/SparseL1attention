@@ -1,0 +1,2 @@
+Z.v,verilog,xil_defaultlib,../../../../AttentionCore.gen/sources_1/ip/Z/sim/Z.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

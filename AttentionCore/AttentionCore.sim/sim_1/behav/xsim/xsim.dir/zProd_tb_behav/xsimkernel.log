@@ -1,4 +1,4 @@
-Running: xsim.dir/zProd_tb_behav/xsimk -simmode gui -wdb zProd_tb_behav.wdb -simrunnum 0 -socket 45621
+Running: xsim.dir/zProd_tb_behav/xsimk -simmode gui -wdb zProd_tb_behav.wdb -simrunnum 0 -socket 58977
 Design successfully loaded
 Design Loading Memory Usage: 35084 KB (Peak: 35084 KB)
-Design Loading CPU Usage: 50 ms
+Design Loading CPU Usage: 40 ms

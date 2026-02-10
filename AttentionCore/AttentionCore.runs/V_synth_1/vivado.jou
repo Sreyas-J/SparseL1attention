@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sat Jan 31 17:46:33 2026
-# Process ID: 952450
+# Start of session at: Tue Feb 10 23:13:03 2026
+# Process ID: 2008631
 # Current directory: /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/V_synth_1
 # Command line: vivado -log V.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source V.tcl
 # Log file: /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/V_synth_1/V.vds
 # Journal file: /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.runs/V_synth_1/vivado.jou
-# Running On: sk-Standard-PC-Q35-ICH9-2009, OS: Linux, CPU Frequency: 3792.874 MHz, CPU Physical cores: 24, Host memory: 67417 MB
+# Running On: sk-Standard-PC-Q35-ICH9-2009, OS: Linux, CPU Frequency: 3792.870 MHz, CPU Physical cores: 24, Host memory: 67417 MB
 #-----------------------------------------------------------
 source V.tcl -notrace
