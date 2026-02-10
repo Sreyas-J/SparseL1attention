@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../AttentionCore.gen/sources_1/ip/V/sim/V.v" \
+"../../../../AttentionCore.gen/sources_1/ip/K/sim/K.v" \
+"../../../../AttentionCore.gen/sources_1/ip/Q/sim/Q.v" \
+"../../../../AttentionCore.gen/sources_1/ip/EXP/sim/EXP.v" \
+"../../../../AttentionCore.gen/sources_1/ip/MUL/sim/MUL.v" \
+"../../../../AttentionCore.gen/sources_1/ip/ADD/sim/ADD.v" \
+"../../../../AttentionCore.gen/sources_1/ip/SUB/sim/SUB.v" \
+
+sv xil_defaultlib  \
+"../../../../AttentionCore.srcs/sources_1/new/AttentionCore.sv" \
+"../../../../AttentionCore.srcs/sources_1/new/L1dist.sv" \
+"../../../../AttentionCore.srcs/sources_1/new/fusedAcc.sv" \
+"../../../../AttentionCore.srcs/sources_1/new/hdl_top.sv" \
+"../../../../AttentionCore.srcs/sources_1/new/zProd.sv" \
+"../../../../AttentionCore.srcs/sim_1/new/hdl_top_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

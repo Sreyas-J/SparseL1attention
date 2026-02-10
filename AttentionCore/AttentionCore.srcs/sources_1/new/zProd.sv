@@ -78,7 +78,9 @@ module zProd#(
     end 
     
     always_comb begin
-       addr=cnt[$clog2(MAX_H)-1:0]; 
+        if(val) addr=0;
+       else addr=cnt[$clog2(MAX_H)-1:0];
+        
        if(cnt>0) startFlg=1;
        else startFlg=0;
        

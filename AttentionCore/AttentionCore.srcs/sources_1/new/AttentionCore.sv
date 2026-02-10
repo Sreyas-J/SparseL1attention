@@ -40,7 +40,7 @@ module AttentionCore#(
     );
         logic [DATA_WIDTH-1:0] c,scaled,Qout,Kout;
         logic l1Val,expVal,l1Ready,expReady,scaleVal,scaleReady;
-        logic [$clog2(MAX_H):0] cnt;
+        logic [$clog2(MAX_H)-1:0] cnt;
         logic expReadyBuff,scaleReadyBuff;
         logic [$clog2(MAX_H)-1:0] addra;
 //        mulVal,mulReady
@@ -56,7 +56,7 @@ module AttentionCore#(
             .A(Qout),
             .B(Kout),
             .H(H),
-            .cnt(cnt),
+            .slicedCnt(cnt),
             
             .done(l1Ready),
             .c(c)
@@ -69,7 +69,7 @@ module AttentionCore#(
           .s_axis_a_tdata(scale),              // input wire [31 : 0] s_axis_a_tdata
           .s_axis_b_tvalid(scaleVal),            // input wire s_axis_b_tvalid
           .s_axis_b_tready(),            // output wire s_axis_b_tready
-          .s_axis_b_tdata(c),              // input wire [31 : 0] s_axis_b_tdata
+          .s_axis_b_tdata({1'b0,c[DATA_WIDTH-2:0]}),              // input wire [31 : 0] s_axis_b_tdata
           .m_axis_result_tvalid(scaleReady),  // output wire m_axis_result_tvalid
           .m_axis_result_tready(scaleVal),  // input wire m_axis_result_tready
           .m_axis_result_tdata(scaled)    // output wire [31 : 0] m_axis_result_tdata

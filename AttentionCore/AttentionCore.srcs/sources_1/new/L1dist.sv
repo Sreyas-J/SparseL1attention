@@ -30,13 +30,14 @@ module L1dist#(
     input logic [DATA_WIDTH-1:0] A, B,
     input logic [$clog2(MAX_H):0] H,
     
-    output logic [$clog2(MAX_H):0] cnt,
+    output logic [$clog2(MAX_H)-1:0] slicedCnt,
     output logic done,
     output logic [DATA_WIDTH-1:0] c
     );
     
     logic fusedVal,fusedDone,valBuff,flg;
     logic [DATA_WIDTH-1:0] fusedA,fusedB,fusedC,fusedOut;
+    logic [$clog2(MAX_H):0] cnt;
     
     fusedAcc#(
     .DATA_WIDTH(DATA_WIDTH)
@@ -85,8 +86,8 @@ module L1dist#(
         fusedB=B;
 
         c=fusedOut;
-//        if(cnt>H) en=0;
-//        else en=1;
+        
+        slicedCnt=cnt[$clog2(MAX_H)-1:0];
 
     end
     

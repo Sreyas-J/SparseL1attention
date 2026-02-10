@@ -4,8 +4,8 @@
 -- Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
 -- Date        : Sat Jan 31 22:58:13 2026
 -- Host        : sk-Standard-PC-Q35-ICH9-2009 running 64-bit Ubuntu 22.04.5 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/K/K_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top K -prefix
+--               K_ K_stub.vhdl
 -- Design      : K
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a35tcpg236-1

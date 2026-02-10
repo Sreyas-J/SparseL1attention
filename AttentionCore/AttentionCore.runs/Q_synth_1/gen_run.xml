@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="Q_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1769880245">
+<GenRun Id="Q_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1770643163">
+  <File Type="VDS-TIMING-PB" Name="Q_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Q_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="Q.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="Q_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="Q_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="Q_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="Q.vds"/>
   <File Type="REPORTS-TCL" Name="Q_reports.tcl"/>
   <File Type="PA-TCL" Name="Q.tcl"/>
-  <File Type="RDS-DCP" Name="Q.dcp"/>
-  <File Type="RDS-UTIL" Name="Q_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="Q_utilization_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Q" RelGenDir="$PGENDIR/Q">
     <File Path="$PSRCDIR/sources_1/ip/Q/Q.xci">
       <FileInfo>
