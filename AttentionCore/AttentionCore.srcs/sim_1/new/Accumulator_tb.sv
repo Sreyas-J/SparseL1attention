@@ -11,7 +11,7 @@ module Accumulator_tb();
     logic clk;
     logic val;
     logic [DATA_WIDTH-1:0] dataIn;
-    logic [$clog2(H):0] count;
+    logic [$clog2(H):0] count,cnt;
     logic [DATA_WIDTH-1:0] acc;
     logic done;
 
@@ -37,16 +37,17 @@ module Accumulator_tb();
 
         // --- Test Case 1: Accumulate 4 values (1.0, 2.0, 3.0, 4.0) ---
         @(posedge clk);
-        count <= 3; // Target count for 4 elements (0 to 3)
+        count <= 4; // Target count for 4 elements (0 to 3)
         val   <= 1;
         
         for (int i = 0; i <= 3; i++) begin
-            dataIn <= $shortrealtobits(1.0 + shortreal'(i));
             @(posedge clk);
+            dataIn <= $shortrealtobits(1.0 + shortreal'(i));
+            val    <= 0;
         end
         
-        val    <= 0;
-        dataIn <= ZERO_VAL;
+        
+//        dataIn <= ZERO_VAL;
 
         // Wait for hardware to finish
         wait(done);
@@ -55,20 +56,20 @@ module Accumulator_tb();
         // --- Test Case 2: Accumulate 10 values (0.5, 1.5, ... 9.5) ---
         repeat(5) @(posedge clk);
         
-        @(posedge clk);
-        count <= 9;
-        val   <= 1;
+//        @(posedge clk);
+//        count <= 9;
+//        val   <= 1;
         
-        for (int j = 0; j <= 9; j++) begin
-            dataIn <= $shortrealtobits(0.5 + shortreal'(j));
-            @(posedge clk);
-        end
+//        for (int j = 0; j <= 9; j++) begin
+//            dataIn <= $shortrealtobits(0.5 + shortreal'(j));
+//            @(posedge clk);
+//        end
         
-        val    <= 0;
-        dataIn <= ZERO_VAL;
+//        val    <= 0;
+//        dataIn <= ZERO_VAL;
 
-        wait(done);
-        repeat(10) @(posedge clk);
+//        wait(done);
+//        repeat(10) @(posedge clk);
         $finish;
     end
 

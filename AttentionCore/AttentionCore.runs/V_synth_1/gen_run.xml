@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="V_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1770745380">
-  <File Type="VDS-TIMING-PB" Name="V_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="V_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="V.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="V_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="V_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="V_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="V.vds"/>
   <File Type="REPORTS-TCL" Name="V_reports.tcl"/>
   <File Type="PA-TCL" Name="V.tcl"/>
+  <File Type="RDS-DCP" Name="V.dcp"/>
+  <File Type="RDS-UTIL" Name="V_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="V_utilization_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/V" RelGenDir="$PGENDIR/V">
     <File Path="$PSRCDIR/sources_1/ip/V/V.xci">
       <FileInfo>
