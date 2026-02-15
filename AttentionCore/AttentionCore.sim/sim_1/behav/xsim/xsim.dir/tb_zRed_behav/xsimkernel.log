@@ -1,4 +1,4 @@
-Running: xsim.dir/tb_zRed_behav/xsimk -simmode gui -wdb tb_zRed_behav.wdb -simrunnum 0 -socket 45677
+Running: xsim.dir/tb_zRed_behav/xsimk -simmode gui -wdb tb_zRed_behav.wdb -simrunnum 0 -socket 48793
 Design successfully loaded
 Design Loading Memory Usage: 37008 KB (Peak: 37008 KB)
 Design Loading CPU Usage: 90 ms

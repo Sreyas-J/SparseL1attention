@@ -16,7 +16,8 @@ module zRed#(
     output logic [DATA_WIDTH-1:0] res[0:MAX_H-1],
     output logic done
     );
-
+    
+    logic startFlg;
     logic [DATA_WIDTH-1:0] zRed1 [0:GRPS-1][0:MAX_H-1],zRed2In [0:MAX_H-1];
     logic [$clog2(MAX_H+MAX_W*2)-1:0] addr;
     logic valFlg[0:GRPS-1][0:MAX_H-1],zRed1Flg[0:GRPS-1][0:MAX_H-1];
@@ -120,12 +121,20 @@ module zRed#(
         if(val) begin
             addr <= 0;
             cnt <= 0;
+            startFlg<=1;
         end
-        else addr <= addr + 1;
+        
+        if(startFlg) addr <= addr + 1;
         
         // FIX 5: Switched to Non-Blocking assignments (<=) for sequential logic logic
         if(zRed1Flg[0][0]) cnt <= 1;
         else if(cnt > 0) cnt <= cnt + 1;
+        
+        if(cnt==H+2)begin
+            cnt<=0;
+            addr<=0;
+            startFlg<=0;
+        end
     end
     
 endmodule

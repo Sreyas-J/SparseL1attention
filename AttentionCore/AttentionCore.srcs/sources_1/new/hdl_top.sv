@@ -37,8 +37,10 @@ module hdl_top#(
     output logic sDone,Vdone
     );
     
-    logic attVal,vVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Zflg;
-    logic [$clog2(MAX_H)-1:0] VAddr,Zaddr;
+    localparam GRPS=MAX_W*2/MAX_H;
+    
+    logic attVal,vVal,zSumVal,rowSumVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Zflg,zSumdone,RSdone;
+    logic [$clog2(MAX_H)-1:0] VAddr,wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1];
     logic [$clog2(MAX_W*2):0] cnt;
     logic [$clog2(MAX_H)-1:0] Vaddra;
     
@@ -52,7 +54,7 @@ module hdl_top#(
     } fsm_state_t;
     
     fsm_state_t fsm;
-    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1];
+    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],sIn[0:GRPS-1],Ssum;
     
 //    logic [DATA_WIDTH-1:0] Qin[0:MAX_W*2-1],Kin[0:MAX_W*2-1];
     
@@ -93,7 +95,7 @@ module hdl_top#(
               .clka(clk),    // input wire clka
               .ena(Zen),      // input wire ena
               .wea(Zwe),      // input wire [0 : 0] wea
-              .addra(Zaddr),  // input wire [1 : 0] addra
+              .addra(Zaddr[i]),  // input wire [1 : 0] addra
               .dina(prod[i]),    // input wire [31 : 0] dina
               .douta(Zdout[i])  // output wire [31 : 0] douta
             );
@@ -133,12 +135,42 @@ module hdl_top#(
         .done(Vdone)
     );
     
+    zRed #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .MAX_W(MAX_W),
+        .MAX_H(MAX_H),
+        .zero(zero)
+    ) zRed (
+        .clk(clk),
+        .val(zSumVal),
+        .Z(Zdout),
+        .H(H),
+        .Zaddr(rZaddr),
+        .res(zSum),
+        .done(zSumdone)
+    );
+    
+    
+    rowSum #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .MAX_W(MAX_W),
+        .MAX_H(MAX_H)
+    ) rowSum1 (
+        .clk(clk),
+        .val(rowSumVal),
+        .dataIn(sIn),
+        .lim(W*2),
+        .sum(Ssum),
+        .done(RSdone)
+    );
+    
     always_ff@(posedge clk)begin
         if(reset)begin
             cnt<=0;
             fsm<=IDLE;
-            Zaddr<=0;
+            wZaddr<=0;
             Zflg<=0;
+            zSumVal<=0;
         end
         else begin
             if(fsm==IDLE) fsm<=LOAD;
@@ -169,14 +201,16 @@ module hdl_top#(
             Zflg<=1;         
         end
         
-        if(Zaddr==H-1)begin
+        if(wZaddr==H-1)begin
             Zflg<=0;
-            Zaddr<=0;
+            wZaddr<=0;
+            zSumVal<=1;
         end
-        else if(Zwe) Zaddr<=Zaddr+1;
+        else if(Zwe) wZaddr<=wZaddr+1;
         
         if(vVal) vVal<=0;
         if(attVal) attVal<=0;
+        if(zSumVal) zSumVal<=0;
     end
     
     always_comb begin
@@ -185,6 +219,16 @@ module hdl_top#(
 
         Zwe=Vdone || Zflg;
         
+        if(Zwe)begin
+            for(int i=0;i<MAX_W*2;i++)begin
+                Zaddr[i]=wZaddr;
+            end
+        end
+        else begin
+            for(int i=0;i<MAX_W*2;i++)begin
+                Zaddr[i]=rZaddr[i];
+            end
+        end  
         scale=SCALE;
         
         if(we)begin

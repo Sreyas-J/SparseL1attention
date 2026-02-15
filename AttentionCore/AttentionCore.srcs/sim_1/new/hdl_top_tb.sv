@@ -127,7 +127,7 @@ module tb_hdl_top();
         // Add a small buffer before ending
         wait(vDone);
 //        wait(Zwe);
-        #100;
+        #500;
         $finish;
     end
 

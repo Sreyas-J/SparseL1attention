@@ -13,7 +13,7 @@ module rowSum_tb();
     logic val;
     shortreal Z [0:MAX_W*2-1];
     logic [$clog2(MAX_H):0] H;
-    logic [DATA_WIDTH-1:0] dataIn [0:GRPS-1];
+    logic [DATA_WIDTH-1:0] dataIn [0:MAX_W*2-1];
     
     // Outputs
     logic [DATA_WIDTH-1:0] res;
@@ -58,17 +58,17 @@ module rowSum_tb();
         // Start the process
         @(posedge clk);
         val <= 1;
+        @(posedge clk);
+        val<=0;
         
         // Feed the data slice by slice
-        for (int j = 0; j < MAX_H; j++) begin
-            for (int i = 0; i < GRPS; i++) begin
+        for (int i = 0; i < MAX_W*2; i++) begin
+//            for (int i = 0; i < GRPS; i++) begin
                     // Convert the real value to bits for the logic input
-                    dataIn[i] <= $shortrealtobits(Z[i*MAX_H+j]);
-                end
-            @(posedge clk);
+            dataIn[i] <= $shortrealtobits(Z[i]);
         end
-        
-        val <= 0;
+//            @(posedge clk);
+//        end
 
         // Wait for completion
         wait(done);

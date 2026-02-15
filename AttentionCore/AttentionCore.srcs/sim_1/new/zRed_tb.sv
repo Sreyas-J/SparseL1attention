@@ -114,7 +114,7 @@ module tb_zRed;
 
         // 5. Wait for Completion
         wait(done);
-        #50
+        #500
 
         $finish;
     end

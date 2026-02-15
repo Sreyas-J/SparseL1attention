@@ -3,38 +3,56 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_hdl_top_behav.wdb" id="1">
+      <db_ref path="rowSum_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_hdl_top" />
+            <top_module name="rowSum_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="420.183 ns"></ZoomEndTime>
-      <Cursor1Time time="45.000 ns"></Cursor1Time>
+      <ZoomEndTime time="275.001 ns"></ZoomEndTime>
+      <Cursor1Time time="275.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="183"></NameColumnWidth>
+      <NameColumnWidth column_width="155"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="3" />
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/clk">
+   <WVObjectSize size="11" />
+   <wvobject type="logic" fp_name="/rowSum_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/reset">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
+   <wvobject type="logic" fp_name="/rowSum_tb/val">
+      <obj_property name="ElementShortName">val</obj_property>
+      <obj_property name="ObjectShortName">val</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[1].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="label">z1[0:3][31:0]</obj_property>
+   <wvobject type="array" fp_name="/rowSum_tb/uut/cnt1">
+      <obj_property name="ElementShortName">cnt1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt1[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/rowSum_tb/H">
+      <obj_property name="ElementShortName">H[2:0]</obj_property>
+      <obj_property name="ObjectShortName">H[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/rowSum_tb/dataIn">
+      <obj_property name="ElementShortName">dataIn[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">dataIn[0:31][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/rowSum_tb/uut/rowSum1Flg">
+      <obj_property name="ElementShortName">rowSum1Flg</obj_property>
+      <obj_property name="ObjectShortName">rowSum1Flg</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/rowSum_tb/uut/rowSum2Flg">
+      <obj_property name="ElementShortName">rowSum2Flg</obj_property>
+      <obj_property name="ObjectShortName">rowSum2Flg</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1">
+      <obj_property name="ElementShortName">rowSum1[0:7][31:0]</obj_property>
+      <obj_property name="ObjectShortName">rowSum1[0:7][31:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[1].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[0]">
          <obj_property name="ElementShortName">[0][31:0]</obj_property>
          <obj_property name="ObjectShortName">[0][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -42,7 +60,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[1].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[1]">
          <obj_property name="ElementShortName">[1][31:0]</obj_property>
          <obj_property name="ObjectShortName">[1][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -50,7 +68,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[1].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[2]">
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[2]">
          <obj_property name="ElementShortName">[2][31:0]</obj_property>
          <obj_property name="ObjectShortName">[2][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -58,7 +76,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[1].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[3]">
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[3]">
          <obj_property name="ElementShortName">[3][31:0]</obj_property>
          <obj_property name="ObjectShortName">[3][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -66,5 +84,57 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[4]">
+         <obj_property name="ElementShortName">[4][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[5]">
+         <obj_property name="ElementShortName">[5][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[6]">
+         <obj_property name="ElementShortName">[6][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum1[7]">
+         <obj_property name="ElementShortName">[7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/rowSum_tb/uut/rowSum2In">
+      <obj_property name="ElementShortName">rowSum2In[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rowSum2In[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/rowSum_tb/res">
+      <obj_property name="ElementShortName">res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">res[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/rowSum_tb/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
    </wvobject>
 </wave_config>

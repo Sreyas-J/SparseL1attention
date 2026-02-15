@@ -29,7 +29,7 @@ module rowSum#(
     parameter zero=$shortrealtobits(0.0)
 )(
 
-    input logic [DATA_WIDTH-1:0] dataIn [0:GRPS-1],
+    input logic [DATA_WIDTH-1:0] dataIn [0:MAX_W*2-1],
 //    input logic [$clog2(MAX_W):0] W,
     input logic [$clog2(MAX_H):0] H,
     input logic clk,val,
@@ -39,12 +39,13 @@ module rowSum#(
     );
     
     logic [DATA_WIDTH-1:0] rowSum1 [0:GRPS-1],rowSum2In;
-    logic rowSum1Flg [0:GRPS-1],rowSum2Flg;
+    logic rowSum1Flg,rowSum2Flg;
     logic [$clog2(GRPS):0] cnt;
+    logic [$clog2(MAX_H):0] cnt1;
     
     genvar i;
     generate
-    for(i=0;i<GRPS;i++)begin
+    for(i=0;i<GRPS-1;i++)begin
         Accumulator #(
             .DATA_WIDTH(DATA_WIDTH),
             .MAX_H(MAX_H),
@@ -52,15 +53,29 @@ module rowSum#(
         )acc1(
             .clk(clk), 
             .val(val),
-            .dataIn(dataIn[i]),
+            .dataIn(dataIn[i*MAX_H+cnt1-1]),
             .count(H),
             
             .cnt(),
             .acc(rowSum1[i]),
-            .done(rowSum1Flg[i])
+            .done()
         );
     end
     endgenerate
+    Accumulator #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .MAX_H(MAX_H),
+        .zero(zero)
+    )acc1(
+        .clk(clk), 
+        .val(val),
+        .dataIn(dataIn[(GRPS-1)*MAX_H+cnt1-1]),
+        .count(H),
+        
+        .cnt(cnt1),
+        .acc(rowSum1[GRPS-1]),
+        .done(rowSum1Flg)
+    );
     
     Accumulator #(
         .DATA_WIDTH(DATA_WIDTH),
@@ -83,7 +98,7 @@ module rowSum#(
     end
     
     always_ff@(posedge clk)begin
-        if(rowSum1Flg[0]) rowSum2Flg<=1;
-        if(val || cnt==GRPS) rowSum2Flg<=0;
+        if(rowSum1Flg) rowSum2Flg<=1;
+        if(val || rowSum2Flg) rowSum2Flg<=0;
     end
 endmodule

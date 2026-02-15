@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../AttentionCore.gen/sources_1/ip/ADD/sim/ADD.v" \
+
+sv xil_defaultlib  \
+"../../../../AttentionCore.srcs/sources_1/new/Accumulator.sv" \
+"../../../../AttentionCore.srcs/sources_1/new/rowSum.sv" \
+"../../../../AttentionCore.srcs/sim_1/new/rowSum_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
