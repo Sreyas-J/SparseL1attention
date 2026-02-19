@@ -27,18 +27,19 @@ module AttentionCore#(
     parameter zero=$shortrealtobits(0.0)
     )(
         input logic clk,val,we,en,
-        input logic [DATA_WIDTH-1:0] Qin,Kin,
+        input logic [DATA_WIDTH-1:0] Qout,Kin,
 //        v[0:MAX_H-1],
         input logic [$clog2(MAX_H):0] H,
         input logic [DATA_WIDTH-1:0] scale,
         input logic [$clog2(MAX_H)-1:0] addr,
         
         output logic [DATA_WIDTH-1:0] s,
+        output logic [$clog2(MAX_H)-1:0] Qaddra,
 //        z [0:MAX_H-1],
         output logic sDone
 //        zDone
     );
-        logic [DATA_WIDTH-1:0] c,scaled,Qout,Kout;
+        logic [DATA_WIDTH-1:0] c,scaled,Kout;
         logic l1Val,expVal,l1Ready,expReady,scaleVal,scaleReady;
         logic [$clog2(MAX_H)-1:0] cnt;
         logic expReadyBuff,scaleReadyBuff;
@@ -85,14 +86,14 @@ module AttentionCore#(
           .m_axis_result_tdata(s)    // output wire [31 : 0] m_axis_result_tdata
         );
         
-        Q q (
-          .clka(clk),    // input wire clka
-          .ena(en),      // input wire ena
-          .wea(we),      // input wire [0 : 0] wea
-          .addra(addra),  // input wire [1 : 0] addra
-          .dina(Qin),    // input wire [31 : 0] dina
-          .douta(Qout)  // output wire [31 : 0] douta
-        );
+//        Q q (
+//          .clka(clk),    // input wire clka
+//          .ena(en),      // input wire ena
+//          .wea(we),      // input wire [0 : 0] wea
+//          .addra(addra),  // input wire [1 : 0] addra
+//          .dina(Qin),    // input wire [31 : 0] dina
+//          .douta(Qout)  // output wire [31 : 0] douta
+//        );
         
         K k (
           .clka(clk),    // input wire clka
@@ -118,7 +119,9 @@ module AttentionCore#(
             sDone=(expReady && !expReadyBuff);
             
             if(we) addra=addr;
-            else addra=cnt[$clog2(MAX_H)-1:0];          
+            else addra=cnt[$clog2(MAX_H)-1:0];   
+            
+            Qaddra=addra;       
         end
         
 endmodule

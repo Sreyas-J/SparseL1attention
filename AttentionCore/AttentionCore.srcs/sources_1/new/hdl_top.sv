@@ -34,13 +34,18 @@ module hdl_top#(
     input logic [$clog2(MAX_H):0] H,
     input logic [$clog2(MAX_W*2):0] W,
     
-    output logic sDone,Vdone
+    output logic [DATA_WIDTH-1:0] out [0:MAX_H-1],
+    output logic sDone,Vdone,done
     );
     
     localparam GRPS=MAX_W*2/MAX_H;
+//    localparam DIV_LATENCY=8;
+//    localparam int DIVS = (MAX_H + DIV_LATENCY - 1) / DIV_LATENCY;
+//    localparam int DIVS_BITS = (DIVS == 0) ? 1 : $clog2(DIVS + 1);
     
-    logic attVal,vVal,zSumVal,rowSumVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Zflg,zSumdone,RSdone;
-    logic [$clog2(MAX_H)-1:0] VAddr,wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1];
+    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone;
+    logic [$clog2(MAX_H)-1:0] VAddr,wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],Qaddra,Qaddr;
+    logic [MAX_H-1:0] divVal;
     logic [$clog2(MAX_W*2):0] cnt;
     logic [$clog2(MAX_H)-1:0] Vaddra;
     
@@ -54,9 +59,17 @@ module hdl_top#(
     } fsm_state_t;
     
     fsm_state_t fsm;
-    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],sIn[0:GRPS-1],Ssum;
+    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],Qout,prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],Ssum;
     
-//    logic [DATA_WIDTH-1:0] Qin[0:MAX_W*2-1],Kin[0:MAX_W*2-1];
+    Q q (
+      .clka(clk),    // input wire clka
+      .ena(QKen),      // input wire ena
+      .wea(Qwe),      // input wire [0 : 0] wea
+      .addra(Qaddra),  // input wire [1 : 0] addra
+      .dina(Q),    // input wire [31 : 0] dina
+      .douta(Qout)  // output wire [31 : 0] douta
+    );
+    
     
     genvar i;
     generate
@@ -71,15 +84,16 @@ module hdl_top#(
                     .clk(clk),
                     .val(attVal),
                     .en(QKen),
-                    .we(QKwe[i]),
-                    .addr(QKaddr), // Updated port connection
-                    .Qin(Q),
-                    .Kin(K), 
+                    .we(QKwe[i]), 
                     .H(H),
                     .scale(scale),
+                    .addr(QKaddr),
+                    .Qout(Qout),
+                    .Kin(K),
                     .s(s[i]),
+                    .Qaddra(),
                     .sDone()
-                );
+                ); 
             end
             
             V v (
@@ -110,13 +124,14 @@ module hdl_top#(
         .clk(clk),
         .val(attVal),
         .en(QKen),
-        .we(QKwe[MAX_W*2-1]),
-        .addr(QKaddr),
-        .Qin(Q),
-        .Kin(K), 
+        .we(QKwe[MAX_W*2-1]), 
         .H(H),
         .scale(scale),
+        .addr(QKaddr),
+        .Qout(Qout),
+        .Kin(K),
         .s(s[MAX_W*2-1]),
+        .Qaddra(Qaddr),
         .sDone(sDone)
     );    
     
@@ -157,11 +172,38 @@ module hdl_top#(
         .MAX_H(MAX_H)
     ) rowSum1 (
         .clk(clk),
-        .val(rowSumVal),
-        .dataIn(sIn),
-        .lim(W*2),
+        .val(rsVal),
+        .dataIn(s),
+        .H(H),
         .sum(Ssum),
         .done(RSdone)
+    );
+    
+    for(i=0;i<MAX_H-1;i++)begin
+        DIV div (
+          .aclk(clk),                                  // input wire aclk
+          .s_axis_a_tvalid(divVal[i]),            // input wire s_axis_a_tvalid
+          .s_axis_a_tready(),            // output wire s_axis_a_tready
+          .s_axis_a_tdata(zSum[i]),              // input wire [31 : 0] s_axis_a_tdata
+          .s_axis_b_tvalid(divVal[i]),            // input wire s_axis_b_tvalid
+          .s_axis_b_tready(),            // output wire s_axis_b_tready
+          .s_axis_b_tdata(Ssum),              // input wire [31 : 0] s_axis_b_tdata
+          .m_axis_result_tvalid(),  // output wire m_axis_result_tvalid
+          .m_axis_result_tready(divVal[i]),  // input wire m_axis_result_tready
+          .m_axis_result_tdata(out[i])    // output wire [31 : 0] m_axis_result_tdata
+        );
+    end
+    DIV div (
+      .aclk(clk),                                  // input wire aclk
+      .s_axis_a_tvalid(divVal[MAX_H-1]),            // input wire s_axis_a_tvalid
+      .s_axis_a_tready(),            // output wire s_axis_a_tready
+      .s_axis_a_tdata(zSum[MAX_H-1]),              // input wire [31 : 0] s_axis_a_tdata
+      .s_axis_b_tvalid(divVal[MAX_H-1]),            // input wire s_axis_b_tvalid
+      .s_axis_b_tready(),            // output wire s_axis_b_tready
+      .s_axis_b_tdata(Ssum),              // input wire [31 : 0] s_axis_b_tdata
+      .m_axis_result_tvalid(done),  // output wire m_axis_result_tvalid
+      .m_axis_result_tready(divVal[MAX_H-1]),  // input wire m_axis_result_tready
+      .m_axis_result_tdata(out[MAX_H-1])    // output wire [31 : 0] m_axis_result_tdata
     );
     
     always_ff@(posedge clk)begin
@@ -171,6 +213,7 @@ module hdl_top#(
             wZaddr<=0;
             Zflg<=0;
             zSumVal<=0;
+            divVal<=0;
         end
         else begin
             if(fsm==IDLE) fsm<=LOAD;
@@ -195,11 +238,14 @@ module hdl_top#(
             QKen<=0;
             vVal<=1;
             Zen<=1;
+            rsVal<=1;
         end
         if(Vdone)begin
             Ven<=0;
             Zflg<=1;         
         end
+        if(zSumdone) divVal[0]<=1;
+        if(done) divVal<=0;
         
         if(wZaddr==H-1)begin
             Zflg<=0;
@@ -211,6 +257,8 @@ module hdl_top#(
         if(vVal) vVal<=0;
         if(attVal) attVal<=0;
         if(zSumVal) zSumVal<=0;
+        if(rsVal) rsVal<=0;
+        if(divVal>0) divVal<=divVal<<1;
     end
     
     always_comb begin
@@ -232,6 +280,8 @@ module hdl_top#(
         scale=SCALE;
         
         if(we)begin
+            Qaddra=QKaddr;
+        
             for(int i=0;i<MAX_W*2;i++)begin
                 if(i==cnt)begin
                     QKwe[i]=1;
@@ -242,6 +292,13 @@ module hdl_top#(
                     Vwe[i]=0;
                 end
             end
+            
+            if(cnt==0) Qwe=1'b1;
+            else Qwe=1'b0;
+        end
+        else begin
+            Qwe=1'b0;
+            Qaddra=Qaddr;
         end
         
     end
