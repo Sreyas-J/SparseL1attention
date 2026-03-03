@@ -48,6 +48,7 @@ module hdl_top#(
     logic [MAX_H-1:0] divVal;
     logic [$clog2(MAX_W*2):0] cnt;
     logic [$clog2(MAX_H)-1:0] Vaddra;
+    logic [$clog2(MAX_H)*2:0] Heff;
     
     typedef enum logic [1:0] {
         IDLE,
@@ -144,7 +145,7 @@ module hdl_top#(
         .val(vVal),
         .S(s),
         .V(Vdouta),
-        .H(H*(N/M)),
+        .H(Heff[$clog2(MAX_H):0]),
         .addr(VAddr),
         .prod(prod),
         .done(Vdone)
@@ -159,7 +160,7 @@ module hdl_top#(
         .clk(clk),
         .val(zSumVal),
         .Z(Zdout),
-        .H(H*(N/M)),
+        .H(Heff[$clog2(MAX_H):0]),
         .Zaddr(rZaddr),
         .res(zSum),
         .done(zSumdone)
@@ -262,7 +263,8 @@ module hdl_top#(
     end
     
     always_comb begin
-        if(fsm==LOAD) Vaddra=QKaddr;
+        Heff=H*N/M;
+        if(fsm==LOAD) Vaddra={{$clog2(MAX_H){1'b0}},QKaddr}*N/M;
         else Vaddra=VAddr;
 
         Zwe=Vdone || Zflg;
