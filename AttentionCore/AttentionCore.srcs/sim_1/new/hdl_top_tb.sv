@@ -42,6 +42,8 @@ module tb_hdl_top();
         .K(K),
         .V(V),
         .H(H),
+        .N('d2),
+        .M('d4),
         .W(W),
         .sDone(sDone),
         .Vdone(vDone)

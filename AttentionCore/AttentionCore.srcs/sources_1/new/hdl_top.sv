@@ -31,7 +31,7 @@ module hdl_top#(
     input logic clk,we,reset,
     input logic [$clog2(MAX_H)-1:0] QKaddr,
     input logic [DATA_WIDTH-1:0] Q,K,V,
-    input logic [$clog2(MAX_H):0] H,
+    input logic [$clog2(MAX_H):0] H,N,M,
     input logic [$clog2(MAX_W*2):0] W,
     
     output logic [DATA_WIDTH-1:0] out [0:MAX_H-1],
@@ -144,7 +144,7 @@ module hdl_top#(
         .val(vVal),
         .S(s),
         .V(Vdouta),
-        .H(H),
+        .H(H*(N/M)),
         .addr(VAddr),
         .prod(prod),
         .done(Vdone)
@@ -159,7 +159,7 @@ module hdl_top#(
         .clk(clk),
         .val(zSumVal),
         .Z(Zdout),
-        .H(H),
+        .H(H*(N/M)),
         .Zaddr(rZaddr),
         .res(zSum),
         .done(zSumdone)

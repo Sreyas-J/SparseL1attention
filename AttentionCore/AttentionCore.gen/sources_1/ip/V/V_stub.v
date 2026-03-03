@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-// Date        : Tue Feb 10 23:13:45 2026
+// Date        : Tue Mar  3 16:29:20 2026
 // Host        : sk-Standard-PC-Q35-ICH9-2009 running 64-bit Ubuntu 22.04.5 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.gen/sources_1/ip/V/V_stub.v
@@ -16,12 +16,12 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* x_core_info = "blk_mem_gen_v8_4_7,Vivado 2023.2" *)
 module V(clka, ena, wea, addra, dina, douta)
-/* synthesis syn_black_box black_box_pad_pin="ena,wea[0:0],addra[1:0],dina[31:0],douta[31:0]" */
+/* synthesis syn_black_box black_box_pad_pin="ena,wea[0:0],addra[0:0],dina[31:0],douta[31:0]" */
 /* synthesis syn_force_seq_prim="clka" */;
   input clka /* synthesis syn_isclock = 1 */;
   input ena;
   input [0:0]wea;
-  input [1:0]addra;
+  input [0:0]addra;
   input [31:0]dina;
   output [31:0]douta;
 endmodule
