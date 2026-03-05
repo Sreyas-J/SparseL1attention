@@ -68,7 +68,7 @@ module zProd#(
         end
         if(val) cnt<=1;
         
-        if(cnt==H-1) done<=1;
+        if(cnt==3) done<=1;
         
         if(cnt>0)begin
             if(cnt<H+2) cnt<=cnt+1;

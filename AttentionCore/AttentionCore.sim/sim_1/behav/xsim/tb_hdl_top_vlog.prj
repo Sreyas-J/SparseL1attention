@@ -2,6 +2,7 @@
 verilog xil_defaultlib  \
 "../../../../AttentionCore.gen/sources_1/ip/DIV/sim/DIV.v" \
 "../../../../AttentionCore.gen/sources_1/ip/Z/sim/Z.v" \
+"../../../../AttentionCore.gen/sources_1/ip/Vi/sim/Vi.v" \
 "../../../../AttentionCore.gen/sources_1/ip/V/sim/V.v" \
 "../../../../AttentionCore.gen/sources_1/ip/K/sim/K.v" \
 "../../../../AttentionCore.gen/sources_1/ip/EXP/sim/EXP.v" \

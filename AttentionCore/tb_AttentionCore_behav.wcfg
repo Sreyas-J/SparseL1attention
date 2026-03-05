@@ -11,61 +11,68 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="88.073 ns"></ZoomStartTime>
-      <ZoomEndTime time="417.432 ns"></ZoomEndTime>
-      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+      <ZoomStartTime time="166.667 ns"></ZoomStartTime>
+      <ZoomEndTime time="930.637 ns"></ZoomEndTime>
+      <Cursor1Time time="415.100 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="139"></NameColumnWidth>
-      <ValueColumnWidth column_width="278"></ValueColumnWidth>
+      <NameColumnWidth column_width="159"></NameColumnWidth>
+      <ValueColumnWidth column_width="149"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="13" />
    <wvobject type="logic" fp_name="/tb_hdl_top/uut/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/reset">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/vVal">
+      <obj_property name="ElementShortName">vVal</obj_property>
+      <obj_property name="ObjectShortName">vVal</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/fsm">
-      <obj_property name="ElementShortName">fsm[1:0]</obj_property>
-      <obj_property name="ObjectShortName">fsm[1:0]</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/Vdone">
+      <obj_property name="ElementShortName">Vdone</obj_property>
+      <obj_property name="ObjectShortName">Vdone</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/QKaddr">
-      <obj_property name="ElementShortName">QKaddr[1:0]</obj_property>
-      <obj_property name="ObjectShortName">QKaddr[1:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/prod">
+      <obj_property name="ElementShortName">prod[0:7][31:0]</obj_property>
+      <obj_property name="ObjectShortName">prod[0:7][31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/Vaddra">
-      <obj_property name="ElementShortName">Vaddra[1:0]</obj_property>
-      <obj_property name="ObjectShortName">Vaddra[1:0]</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/Zflg">
+      <obj_property name="ElementShortName">Zflg</obj_property>
+      <obj_property name="ObjectShortName">Zflg</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/V">
-      <obj_property name="ElementShortName">V[31:0]</obj_property>
-      <obj_property name="ObjectShortName">V[31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/wZaddr">
+      <obj_property name="ElementShortName">wZaddr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">wZaddr[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/q/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/Zwe">
+      <obj_property name="ElementShortName">Zwe</obj_property>
+      <obj_property name="ObjectShortName">Zwe</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/VIaddra">
+      <obj_property name="ElementShortName">VIaddra[1:0]</obj_property>
+      <obj_property name="ObjectShortName">VIaddra[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/VI_out">
+      <obj_property name="ElementShortName">VI_out[7:0][1:0]</obj_property>
+      <obj_property name="ObjectShortName">VI_out[7:0][1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/Zaddr">
+      <obj_property name="ElementShortName">Zaddr[0:7][1:0]</obj_property>
+      <obj_property name="ObjectShortName">Zaddr[0:7][1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
       <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="label">Q[0:3][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:1][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:1][31:0]</obj_property>
-      <obj_property name="label">V0[0:3][31:0]</obj_property>
+      <obj_property name="label">Z0[0:3][31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">24</obj_property>
       <obj_property name="radix_otherWidth">8</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
          <obj_property name="ElementShortName">[0][31:0]</obj_property>
          <obj_property name="ObjectShortName">[0][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -73,7 +80,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
          <obj_property name="ElementShortName">[1][31:0]</obj_property>
          <obj_property name="ObjectShortName">[1][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -81,115 +88,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:1][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:1][31:0]</obj_property>
-      <obj_property name="label">V3[0:3][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
-         <obj_property name="ElementShortName">[0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">24</obj_property>
-         <obj_property name="radix_otherWidth">8</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
-         <obj_property name="ElementShortName">[1][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">24</obj_property>
-         <obj_property name="radix_otherWidth">8</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:1][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:1][31:0]</obj_property>
-      <obj_property name="label">V7[0:3][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
-         <obj_property name="ElementShortName">[0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">24</obj_property>
-         <obj_property name="radix_otherWidth">8</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
-         <obj_property name="ElementShortName">[1][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">24</obj_property>
-         <obj_property name="radix_otherWidth">8</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].genblk1.Attention /k/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="label">K0[0:3][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].genblk1.Attention /k/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="label">K3[0:3][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/Attention/k/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="label">K7[0:3][31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">24</obj_property>
-      <obj_property name="radix_otherWidth">8</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/out">
-      <obj_property name="ElementShortName">out[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">out[0:3][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/out[0]">
-         <obj_property name="ElementShortName">[0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">24</obj_property>
-         <obj_property name="radix_otherWidth">8</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/out[1]">
-         <obj_property name="ElementShortName">[1][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">24</obj_property>
-         <obj_property name="radix_otherWidth">8</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/out[2]">
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[2]">
          <obj_property name="ElementShortName">[2][31:0]</obj_property>
          <obj_property name="ObjectShortName">[2][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -197,7 +96,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/out[3]">
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[3]">
          <obj_property name="ElementShortName">[3][31:0]</obj_property>
          <obj_property name="ObjectShortName">[3][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -206,8 +105,26 @@
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/done">
-      <obj_property name="ElementShortName">done</obj_property>
-      <obj_property name="ObjectShortName">done</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
+      <obj_property name="label">Z3[0:3][31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].z /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
+      <obj_property name="label">Z7[0:3][31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

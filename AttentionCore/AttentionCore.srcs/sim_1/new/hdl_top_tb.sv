@@ -8,6 +8,8 @@ module tb_hdl_top();
     parameter DATA_WIDTH = 32;
     parameter MAX_W = 4;  // Scaled down from 256
     parameter MAX_H = 4;  // Scaled down from 64
+    parameter N = 2;
+    parameter M = 4;
 
     // -----------------------------------------
     // Signals
@@ -16,13 +18,16 @@ module tb_hdl_top();
     logic we;
     logic reset;
     logic val;
-    logic [$clog2(MAX_H)-1:0] QKaddr,Vaddr;
+    logic [$clog2(MAX_H)-1:0] QKaddr, Vaddr;
     logic [DATA_WIDTH-1:0] Q;
-    logic [DATA_WIDTH-1:0] K,V;
+    logic [DATA_WIDTH-1:0] K, V;
     logic [$clog2(MAX_H):0] H;
     logic [$clog2(MAX_W*2):0] W;
     
-    logic sDone,vDone;
+    // 2-bit index for 2:4 sparsity
+    logic [$clog2(M)-1:0] VI_in; 
+    
+    logic sDone, vDone;
 
     // -----------------------------------------
     // Unit Under Test (UUT)
@@ -35,16 +40,15 @@ module tb_hdl_top();
         .clk(clk),
         .we(we),
         .reset(reset),
-//        .val(val),
+//      .val(val),
         .QKaddr(QKaddr),
-//        .Vaddr(Vaddr),
+        .Vaddr(Vaddr), 
         .Q(Q),
         .K(K),
         .V(V),
         .H(H),
-        .N('d2),
-        .M('d4),
         .W(W),
+        .VI_in(VI_in),
         .sDone(sDone),
         .Vdone(vDone)
     );
@@ -65,16 +69,24 @@ module tb_hdl_top();
         shortreal q_float;
         shortreal k_float;
         shortreal v_float;
-        int module_idx; // Declared here for broader scope if needed, or inline
+        int module_idx;
+        
+        // Variables for simultaneous sparse tracking
+        int block_idx;
+        int pos_in_block;
+        int n_idx;
+        int offset;
+        int actual_pos;
 
         // 1. Initialize Default Values
         we = 0;
         val = 0;
         QKaddr = 0;
-        Vaddr=0;
+        Vaddr = 0;
         Q = 0;
         K = 0;
-        V=0;
+        V = 0;
+        VI_in = 0;
         H = MAX_H; 
         W = MAX_W;
         
@@ -92,43 +104,57 @@ module tb_hdl_top();
         @(posedge clk);
         val = 0;
 
-        // 4. Begin Writing Q and K Matrices continuously
+        // ---------------------------------------------------------
+        // 4. Simultaneous Transfer of Q, K (Dense) and V (Sparse)
+        // ---------------------------------------------------------
         we = 1; 
-
-        // The DUT expects MAX_W*2 modules to be loaded.
         for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
             for (int addr = 0; addr < H; addr++) begin
+                
+                // --- DENSE DATAPATH (Q & K) ---
                 QKaddr = addr;
-                
-                // ---------------------------------------------------------
-                // UPDATED SECTION: Floating Point Assignment
-                // ---------------------------------------------------------
-                
-                // 1. Create a floating point value (cast int to shortreal)
                 q_float = shortreal'((module_idx * H) + addr + 1);
                 k_float = shortreal'((module_idx * H) + addr + 2);
-                v_float = shortreal'((module_idx * H) + addr);
-
-                // 2. Convert float to IEEE 754 bits
                 Q = $shortrealtobits(q_float); 
                 K = $shortrealtobits(k_float);
-                V = $shortrealtobits(v_float); 
                 
-                @(posedge clk); // Wait 1 cycle for write to register
+                // --- SPARSE DATAPATH (V) ---
+                block_idx = addr / M;
+                pos_in_block = addr % M;
+                
+                // Check if we are within the N non-zero elements of the current M block
+                if (pos_in_block < N) begin
+                    n_idx = pos_in_block; // Fetch new valid V data
+                end else begin
+                    n_idx = N - 1; // Hold the last valid V data to safely overwrite & prevent corruption
+                end
+                
+                // Example pattern for 2:4 sparsity: non-zero elements at index 0 and 2
+                offset = n_idx * 2; 
+                actual_pos = (block_idx * M) + offset;
+                
+                Vaddr = (block_idx * N) + n_idx; 
+                VI_in = offset; 
+                
+                v_float = shortreal'((module_idx * H) + actual_pos+1);
+                V = $shortrealtobits(v_float);
+                
+                // Wait for positive edge to register all matrices concurrently
+                @(posedge clk); 
             end
         end
         
         // 5. Loading Complete
         we = 0;
         QKaddr = 0;
-        Vaddr=0;
+        Vaddr = 0;
         Q = 0;
         K = 0;
-        V=0;
+        V = 0;
+        VI_in = 0;
 
-        // Add a small buffer before ending
+        // Wait for processing to complete
         wait(vDone);
-//        wait(Zwe);
         #500;
         $finish;
     end
