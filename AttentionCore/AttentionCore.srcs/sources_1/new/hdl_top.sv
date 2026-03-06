@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 02/06/2026 03:12:19 PM
-// Design Name: 
-// Module Name: hdl_top
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module hdl_top#(
     parameter DATA_WIDTH=32,
@@ -30,16 +10,17 @@ module hdl_top#(
     
     parameter zero=$shortrealtobits(0.0)
 )(
-    input logic clk,we,reset,
-    input logic [$clog2(MAX_H)-1:0] QKaddr,
-    input logic [$clog2(M)-1:0] Vaddr,
+    input logic clk,reset,
+//    input logic [$clog2(MAX_H)-1:0] QKaddr,
+//    input logic [$clog2(M)-1:0] Vaddr,
+    input logic [$clog2(MAX_H)-1:0] ADDR,
     input logic [$clog2(M)-1:0] VI_in,
-    input logic [DATA_WIDTH-1:0] Q,K,V,
-    input logic [$clog2(MAX_H):0] H,
-    input logic [$clog2(MAX_W*2):0] W,
+    input logic [DATA_WIDTH-1:0] IN,
+//    input logic [$clog2(MAX_H):0] H,
+//    input logic [$clog2(MAX_W*2):0] W,
     
-    output logic [DATA_WIDTH-1:0] out [0:MAX_H-1],
-    output logic sDone,Vdone,done
+    output logic [DATA_WIDTH-1:0] out_slice,
+    output logic sDone,done
     );
     
     localparam GRPS=MAX_W*2/MAX_H;
@@ -47,11 +28,11 @@ module hdl_top#(
 //    localparam int DIVS = (MAX_H + DIV_LATENCY - 1) / DIV_LATENCY;
 //    localparam int DIVS_BITS = (DIVS == 0) ? 1 : $clog2(DIVS + 1);
     
-    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg,VupdateFlg;
-    logic [$clog2(MAX_H)-1:0] wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],Qaddra,Qaddr;
+    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg,VupdateFlg,Vdone;
+    logic [$clog2(MAX_H)-1:0] wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],Qaddra,Qaddr,outAddr;
     logic [MAX_H-1:0] divVal;
     logic [$clog2(MAX_W*2):0] cnt;
-    logic [$clog2(MAX_H)-1:0] Vaddra,VIaddra,VIaddr;
+    logic [$clog2(MAX_H)-1:0] Vaddra,VAddr,VIaddra,VIaddr;
     logic [$clog2(MAX_H)*2:0] Heff;
     logic [$clog2(M)-1:0] VI_out[0:MAX_W*2-1];
     
@@ -65,7 +46,7 @@ module hdl_top#(
     } fsm_state_t;
     
     fsm_state_t fsm;
-    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],Qout,prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],Ssum;
+    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],Qout,prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],Ssum,Q,K,V,out [0:MAX_H-1];
     
     Q q (
       .clka(clk),    // input wire clka
@@ -91,9 +72,9 @@ module hdl_top#(
                     .val(attVal),
                     .en(QKen),
                     .we(QKwe[i]), 
-                    .H(H),
+                    .H(MAX_H),
                     .scale(scale),
-                    .addr(QKaddr),
+                    .addr(ADDR),
                     .Qout(Qout),
                     .Kin(K),
                     .s(s[i]),
@@ -140,9 +121,9 @@ module hdl_top#(
         .val(attVal),
         .en(QKen),
         .we(QKwe[MAX_W*2-1]), 
-        .H(H),
+        .H(MAX_H),
         .scale(scale),
-        .addr(QKaddr),
+        .addr(ADDR),
         .Qout(Qout),
         .Kin(K),
         .s(s[MAX_W*2-1]),
@@ -174,7 +155,7 @@ module hdl_top#(
         .clk(clk),
         .val(zSumVal),
         .Z(Zdout),
-        .H(H),
+        .H(MAX_H),
         .Zaddr(rZaddr),
         .res(zSum),
         .done(zSumdone)
@@ -189,7 +170,7 @@ module hdl_top#(
         .clk(clk),
         .val(rsVal),
         .dataIn(s),
-        .H(H),
+        .H(MAX_H),
         .sum(Ssum),
         .done(RSdone)
     );
@@ -234,7 +215,8 @@ module hdl_top#(
             divVal<=0;
             
             wZaddr<=0;
-            VIaddr<=H;
+            VIaddr<=MAX_H;
+            outAddr<=0;
         end
         else begin
             if(fsm==IDLE)begin
@@ -268,6 +250,12 @@ module hdl_top#(
             divVal<=0;
             attVal<=1;
             done<=0;
+            
+            outAddr<=1;
+        end
+        
+        if(outAddr>0)begin
+            outAddr<=outAddr+1;
         end
         
         if(wZaddr==Heff-1)begin
@@ -277,8 +265,8 @@ module hdl_top#(
         end
         else if(Zwe) wZaddr<=wZaddr+1;
         
-        if(VAddr==H) VIaddr<=0;
-        if(VIaddr<H) VIaddr<=VIaddr+1;
+        if(VAddr==MAX_H) VIaddr<=0;
+        if(VIaddr<MAX_H) VIaddr<=VIaddr+1;
         
         if(vVal) vVal<=0;
         if(attVal) attVal<=0;
@@ -288,21 +276,21 @@ module hdl_top#(
         
         
         if(sDone) QupdateFlg<=1;
-        if(QupdateFlg && Qaddra==H-1)begin
+        if(QupdateFlg && Qaddra==MAX_H-1)begin
             QupdateFlg<=0;
             KupdateFlg<=1;
         end
 
         if(KupdateFlg)begin                           
-            if(fsm==EXEC && QKaddr==H-1)begin
+            if(fsm==EXEC && ADDR==MAX_H-1)begin
                 KupdateFlg<=0;
                 VupdateFlg<=1;
             end
             
             if(fsm==LOAD)begin                        
-                if(QKaddr==H-1) cnt<=cnt+1;
+                if(ADDR==MAX_H-1) cnt<=cnt+1;
             
-                if(cnt==W*2)begin
+                if(cnt==MAX_W*2)begin
                     KupdateFlg<=0;
                     VupdateFlg<=1;
                     cnt<=0;
@@ -311,15 +299,15 @@ module hdl_top#(
         end
             
         if(VupdateFlg)begin
-            if(fsm==EXEC && Vaddr==Heff-1)begin
+            if(fsm==EXEC && ADDR==Heff-1)begin
                 VupdateFlg<=0;
                 cnt<=cnt+1;
             end
             
             if(fsm==LOAD)begin
-                if(Vaddr==Heff-1) cnt<=cnt+1;
+                if(ADDR==Heff-1) cnt<=cnt+1;
                 
-                if(cnt==W*2)begin
+                if(cnt==MAX_W*2)begin
                     VupdateFlg<=0;
                     attVal<=1;
                     fsm<=EXEC;
@@ -330,7 +318,13 @@ module hdl_top#(
     end
     
     always_comb begin
-        Heff=H*N/M;
+        Q=IN;
+        K=IN;
+        V=IN;
+        
+        out_slice=out[outAddr];
+    
+        Heff=MAX_H*N/M;
 
         Zwe=Vdone || Zflg;
         
@@ -348,7 +342,7 @@ module hdl_top#(
         
         //Q
         if(QupdateFlg || sDone)begin
-            Qaddra=QKaddr;
+            Qaddra=ADDR;
             Qwe=1'b1;
         end
         else begin
@@ -376,7 +370,7 @@ module hdl_top#(
         
         //V
         if(VupdateFlg)begin
-            Vaddra=Vaddr;
+            Vaddra=ADDR;
             VIaddra=Vaddra;
             
             for(int i=0;i<MAX_W*2;i++)begin

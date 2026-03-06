@@ -5,13 +5,16 @@ Running: /tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr --debug 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-9543] actual bit length 1 differs from formal bit length 2 for port 'addr' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:163]
+WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 3 for port 'H' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:124]
+WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 3 for port 'H' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:158]
 WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 2 for port 'count' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/zRed.sv:57]
 WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 2 for port 'count' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/zRed.sv:74]
+WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 3 for port 'H' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:173]
 WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 2 for port 'count' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/rowSum.sv:88]
-WARNING: [VRFC 10-9543] actual bit length 2 differs from formal bit length 1 for port 'addra' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:109]
-WARNING: [VRFC 10-9543] actual bit length 2 differs from formal bit length 1 for port 'addra' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:118]
-WARNING: [VRFC 10-3823] variable 'done' might have multiple concurrent drivers [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:224]
+WARNING: [VRFC 10-9543] actual bit length 32 differs from formal bit length 3 for port 'H' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:75]
+WARNING: [VRFC 10-9543] actual bit length 2 differs from formal bit length 1 for port 'addra' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:90]
+WARNING: [VRFC 10-9543] actual bit length 2 differs from formal bit length 1 for port 'addra' [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:99]
+WARNING: [VRFC 10-3823] variable 'done' might have multiple concurrent drivers [/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/hdl_top.sv:205]
 Completed static elaboration
 Starting simulation data flow analysis
 WARNING: [XSIM 43-4099] "/home/sk/Desktop/SparseL1Attention/AttentionCore/AttentionCore.srcs/sources_1/new/Accumulator.sv" Line 1. Module Accumulator(MAX_H=4) doesn't have a timescale but at least one module in design has a timescale.

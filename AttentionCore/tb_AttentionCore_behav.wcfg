@@ -13,11 +13,11 @@
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
       <ZoomEndTime time="2,000.001 ns"></ZoomEndTime>
-      <Cursor1Time time="1,235.000 ns"></Cursor1Time>
+      <Cursor1Time time="875.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="159"></NameColumnWidth>
-      <ValueColumnWidth column_width="77"></ValueColumnWidth>
+      <ValueColumnWidth column_width="73"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="31" />
    <wvobject type="logic" fp_name="/tb_hdl_top/uut/clk">

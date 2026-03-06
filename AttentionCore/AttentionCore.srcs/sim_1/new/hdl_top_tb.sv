@@ -15,19 +15,17 @@ module tb_hdl_top();
     // Signals
     // -----------------------------------------
     logic clk;
-    logic we;
     logic reset;
-    logic val;
-    logic [$clog2(MAX_H)-1:0] QKaddr, Vaddr;
-    logic [DATA_WIDTH-1:0] Q;
-    logic [DATA_WIDTH-1:0] K, V;
+    logic [$clog2(MAX_H)-1:0] ADDR;
+    logic [DATA_WIDTH-1:0] IN,out_slice;
+    
     logic [$clog2(MAX_H):0] H;
     logic [$clog2(MAX_W*2):0] W;
-    
+
     // 2-bit index for 2:4 sparsity
     logic [$clog2(M)-1:0] VI_in; 
     
-    logic sDone, vDone;
+    logic sDone, done;
 
     // -----------------------------------------
     // Unit Under Test (UUT)
@@ -38,19 +36,13 @@ module tb_hdl_top();
         .MAX_H(MAX_H)
     ) uut (
         .clk(clk),
-        .we(we),
         .reset(reset),
-//      .val(val),
-        .QKaddr(QKaddr),
-        .Vaddr(Vaddr), 
-        .Q(Q),
-        .K(K),
-        .V(V),
-        .H(H),
-        .W(W),
+        .ADDR(ADDR),
+        .IN(IN),
         .VI_in(VI_in),
         .sDone(sDone),
-        .Vdone(vDone)
+        .done(done),
+        .out_slice(out_slice)
     );
 
     // -----------------------------------------
@@ -79,13 +71,10 @@ module tb_hdl_top();
         int actual_pos;
 
         // 1. Initialize Default Values
-        we = 0;
-        QKaddr = 0;
-        Vaddr = 0;
-        Q = 0;
-        K = 0;
-        V = 0;
+        ADDR = 0;
+        IN=0;
         VI_in = 0;
+        
         H = MAX_H; 
         W = MAX_W;
         
@@ -95,24 +84,14 @@ module tb_hdl_top();
         @(posedge clk);
         reset = 0;
         
-        // Wait a couple of cycles for FSM to enter LOAD
-//        repeat(2) @(posedge clk);
-
- // ---------------------------------------------------------
-        // 4. Sequential Transfer of Q, K, and V
-        // ---------------------------------------------------------
-        we = 1; 
-        
         // --- PHASE 4a: DENSE DATAPATH (Q ONLY) ---
 //        for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
             for (int addr = 0; addr < H; addr++) begin
                 
-                QKaddr = addr;
+                ADDR = addr;
                 q_float = shortreal'((module_idx * H) + addr + 1);
-                Q = $shortrealtobits(q_float); 
-                
-                // Keep K and V zeroed
-                K = 0; V = 0; Vaddr = 0; VI_in = 0;
+                IN = $shortrealtobits(q_float); 
+                VI_in = 0;
  
                 @(posedge clk);
             end
@@ -120,12 +99,10 @@ module tb_hdl_top();
         // --- PHASE 4b: DENSE DATAPATH (K ONLY) ---
         for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
             for (int addr = 0; addr < H; addr++) begin
-                QKaddr = addr;
+                ADDR = addr;
                 k_float = shortreal'((module_idx * H) + addr + 2);
-                K = $shortrealtobits(k_float);
-                
-                // Keep Q and V zeroed
-                Q = 0; V = 0; Vaddr = 0; VI_in = 0;
+                IN = $shortrealtobits(k_float);
+                VI_in = 0;
                 
                 @(posedge clk); 
             end
@@ -148,26 +125,18 @@ module tb_hdl_top();
                 offset = n_idx * 2; 
                 actual_pos = (block_idx * M) + offset;
                 
-                Vaddr = (block_idx * N) + n_idx; 
+                ADDR = (block_idx * N) + n_idx; 
                 VI_in = offset; 
                 
                 v_float = shortreal'((module_idx * H) + actual_pos + 1);
-                V = $shortrealtobits(v_float);
-                
-                // Keep Q and K zeroed
-                Q = 0; K = 0; QKaddr = 0;
+                IN = $shortrealtobits(v_float);
                 
                 @(posedge clk); 
             end
         end
-        
-        // 5. Initial Loading Complete
-        we = 0;
-        QKaddr = 0;
-        Vaddr = 0;
-        Q = 0;
-        K = 0;
-        V = 0;
+
+        ADDR = 0;
+        IN = 0;
         VI_in = 0;
 
         // ---------------------------------------------------------
@@ -180,47 +149,36 @@ module tb_hdl_top();
             for (int addr = 0; addr < H; addr++) begin
                 @(posedge clk); 
                 // --- DENSE DATAPATH (Q ONLY) ---
-                QKaddr = addr;
+                ADDR = addr;
                 
                 // Add a distinct offset (+1000) so the new Q row is easily visible in waveforms
                 q_float = shortreal'(10 + addr + 1);
-                Q = $shortrealtobits(q_float); 
-                
-                // Drive 0s to K and V since we are only updating Q
-                K = 0;
-                V = 0;
-                Vaddr = 0;
+                IN = $shortrealtobits(q_float); 
                 VI_in = 0;
-                
                 
             end
 //        end
         @(posedge clk);
         // 7. Loading Complete for the new Q row
 //        we = 0;
-        QKaddr = 0;
-        Q = 0;
+        ADDR = 0;
+        IN = 0;
         
         for (int addr = 0; addr < H; addr++) begin
             @(posedge clk); 
             // --- DENSE DATAPATH (K ONLY) ---
-            QKaddr = addr;
+            ADDR = addr;
             
             // Add a distinct offset (+2000) so the new K row is easily visible
             k_float = shortreal'(5 + addr + 1);
-            K = $shortrealtobits(k_float); 
-            
-            // Drive 0s to Q and V since we are only updating K
-            Q = 0;
-            V = 0;
-            Vaddr = 0;
+            IN = $shortrealtobits(k_float); 
             VI_in = 0;
         end
         @(posedge clk); // Allow the final K value to be sampled
         
         // 9. Loading Complete for the new K row
-        QKaddr = 0;
-        K = 0;
+        ADDR = 0;
+        IN = 0;
         
 //        @(posedge vDone); // Wait for the vDone pulse
         
@@ -242,23 +200,18 @@ module tb_hdl_top();
             offset = n_idx *2+1; 
             actual_pos = (block_idx * M) + offset;
             
-            Vaddr = (block_idx * N) + n_idx; 
+            ADDR = (block_idx * N) + n_idx; 
             VI_in = offset; 
             
             // Add a distinct offset (+3000) so the new V row is easily visible
             v_float = shortreal'((actual_pos + 1)*0.3);
-            V = $shortrealtobits(v_float);
-            
-            // Zero out Q and K since we are only updating V
-            Q = 0;
-            K = 0;
-            QKaddr = 0;
+            IN = $shortrealtobits(v_float);;
         end
         @(posedge clk); // Allow the final V value to be sampled
         
         // 11. Loading Complete for the new V row
-        Vaddr = 0;
-        V = 0;
+        ADDR = 0;
+        IN = 0;
         VI_in = 0;
 
         // Wait for final processing to complete
