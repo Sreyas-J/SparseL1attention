@@ -11,62 +11,74 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="568.351 ns"></ZoomStartTime>
-      <ZoomEndTime time="622.203 ns"></ZoomEndTime>
-      <Cursor1Time time="574.910 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,000.001 ns"></ZoomEndTime>
+      <Cursor1Time time="635.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="159"></NameColumnWidth>
-      <ValueColumnWidth column_width="141"></ValueColumnWidth>
+      <ValueColumnWidth column_width="133"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="10" />
+   <WVObjectSize size="18" />
    <wvobject type="logic" fp_name="/tb_hdl_top/uut/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/sDone">
-      <obj_property name="ElementShortName">sDone</obj_property>
-      <obj_property name="ObjectShortName">sDone</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/cnt">
+      <obj_property name="ElementShortName">cnt[3:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[3:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/QKupdateFlg">
-      <obj_property name="ElementShortName">QKupdateFlg</obj_property>
-      <obj_property name="ObjectShortName">QKupdateFlg</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/KupdateFlg">
+      <obj_property name="ElementShortName">KupdateFlg</obj_property>
+      <obj_property name="ObjectShortName">KupdateFlg</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/Qwe">
-      <obj_property name="ElementShortName">Qwe</obj_property>
-      <obj_property name="ObjectShortName">Qwe</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/vDone">
+      <obj_property name="ElementShortName">vDone</obj_property>
+      <obj_property name="ObjectShortName">vDone</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_hdl_top/uut/QKen">
-      <obj_property name="ElementShortName">QKen</obj_property>
-      <obj_property name="ObjectShortName">QKen</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/VupdateFlg">
+      <obj_property name="ElementShortName">VupdateFlg</obj_property>
+      <obj_property name="ObjectShortName">VupdateFlg</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/QKaddr">
-      <obj_property name="ElementShortName">QKaddr[1:0]</obj_property>
-      <obj_property name="ObjectShortName">QKaddr[1:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/Vaddr">
+      <obj_property name="ElementShortName">Vaddr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">Vaddr[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/Qaddr">
-      <obj_property name="ElementShortName">Qaddr[1:0]</obj_property>
-      <obj_property name="ObjectShortName">Qaddr[1:0]</obj_property>
+   <wvobject type="logic" fp_name="/tb_hdl_top/uut/Ven">
+      <obj_property name="ElementShortName">Ven</obj_property>
+      <obj_property name="ObjectShortName">Ven</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/Qaddra">
-      <obj_property name="ElementShortName">Qaddra[1:0]</obj_property>
-      <obj_property name="ObjectShortName">Qaddra[1:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/Vwe">
+      <obj_property name="ElementShortName">Vwe[0:7]</obj_property>
+      <obj_property name="ObjectShortName">Vwe[0:7]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/Q">
-      <obj_property name="ElementShortName">Q[31:0]</obj_property>
-      <obj_property name="ObjectShortName">Q[31:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/VI_in">
+      <obj_property name="ElementShortName">VI_in[1:0]</obj_property>
+      <obj_property name="ObjectShortName">VI_in[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/V">
+      <obj_property name="ElementShortName">V[31:0]</obj_property>
+      <obj_property name="ObjectShortName">V[31:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">24</obj_property>
       <obj_property name="radix_otherWidth">8</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_hdl_top/uut/q/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/Vaddra">
+      <obj_property name="ElementShortName">Vaddra[1:0]</obj_property>
+      <obj_property name="ObjectShortName">Vaddra[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/VIaddra">
+      <obj_property name="ElementShortName">VIaddra[1:0]</obj_property>
+      <obj_property name="ObjectShortName">VIaddra[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:3][31:0]</obj_property>
-      <obj_property name="label">Q[0:3][31:0]</obj_property>
+      <obj_property name="ElementShortName">memory[0:1][31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:1][31:0]</obj_property>
+      <obj_property name="label">V0[0:1][31:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/q/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
          <obj_property name="ElementShortName">[0][31:0]</obj_property>
          <obj_property name="ObjectShortName">[0][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -74,7 +86,7 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/q/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
          <obj_property name="ElementShortName">[1][31:0]</obj_property>
          <obj_property name="ObjectShortName">[1][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
@@ -82,21 +94,75 @@
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/q/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[2]">
-         <obj_property name="ElementShortName">[2][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:1][31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:1][31:0]</obj_property>
+      <obj_property name="label">V3[0:1][31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
+         <obj_property name="ElementShortName">[0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/tb_hdl_top/uut/q/inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[3]">
-         <obj_property name="ElementShortName">[3][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
+         <obj_property name="ElementShortName">[1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">24</obj_property>
          <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:1][31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:1][31:0]</obj_property>
+      <obj_property name="label">V7[0:1][31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[0]">
+         <obj_property name="ElementShortName">[0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory[1]">
+         <obj_property name="ElementShortName">[1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[0].v_i /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:1][1:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:1][1:0]</obj_property>
+      <obj_property name="label">VI0[0:1][1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[3].v_i /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:1][1:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:1][1:0]</obj_property>
+      <obj_property name="label">VI3[0:1][1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_hdl_top/uut/\genblk1[7].v_i /inst/\native_mem_module.blk_mem_gen_v8_4_7_inst /memory">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">memory[0:1][1:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:1][1:0]</obj_property>
+      <obj_property name="label">VI7[0:1][1:0]</obj_property>
    </wvobject>
 </wave_config>

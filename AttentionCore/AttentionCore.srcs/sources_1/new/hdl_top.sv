@@ -47,7 +47,7 @@ module hdl_top#(
 //    localparam int DIVS = (MAX_H + DIV_LATENCY - 1) / DIV_LATENCY;
 //    localparam int DIVS_BITS = (DIVS == 0) ? 1 : $clog2(DIVS + 1);
     
-    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg;
+    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg,VupdateFlg;
     logic [$clog2(MAX_H)-1:0] wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],Qaddra,Qaddr;
     logic [MAX_H-1:0] divVal;
     logic [$clog2(MAX_W*2):0] cnt;
@@ -227,6 +227,8 @@ module hdl_top#(
             
             fsm<=IDLE;
             QupdateFlg<=0;
+            KupdateFlg<=0;
+            VupdateFlg<=0;
             Zflg<=0;
             zSumVal<=0;
             divVal<=0;
@@ -283,19 +285,31 @@ module hdl_top#(
         if(divVal>0) divVal<=divVal<<1;
         
         if(sDone) QupdateFlg<=1;
-        if(QupdateFlg && Qaddra==H-1) QupdateFlg<=0;
+        if(QupdateFlg && Qaddra==H-1)begin
+            QupdateFlg<=0;
+            KupdateFlg<=1;
+        end
+        if(KupdateFlg && QKaddr==H-1)begin
+//            QupdateFlg<=0;
+            KupdateFlg<=0;
+            VupdateFlg<=1;
+//            cnt<=cnt+1;
+        end
+        
+//        if(Vdone) VupdateFlg<=1;
+        if(VupdateFlg && Vaddra==Heff-1) VupdateFlg<=0;
     end
     
     always_comb begin
         Heff=H*N/M;
-        if(fsm==LOAD)begin
-            Vaddra=Vaddr;
-            VIaddra=Vaddra;
-        end
-        else begin
-            Vaddra=VAddr;
-            VIaddra=VIaddr;
-        end
+//        if(fsm==LOAD)begin
+//            Vaddra=Vaddr;
+//            VIaddra=Vaddra;
+//        end
+//        else begin
+//            Vaddra=VAddr;
+//            VIaddra=VIaddr;
+//        end
 
         Zwe=Vdone || Zflg;
         
@@ -311,19 +325,36 @@ module hdl_top#(
         end  
         scale=SCALE;
         
+//        if(we)begin
+//            Qaddra=QKaddr;
+        
+//            for(int i=0;i<MAX_W*2;i++)begin
+//                if(i==cnt)begin
+//                    QKwe[i]=1;
+//                    Vwe[i]=1;
+//                end
+//                else begin
+//                    QKwe[i]=0;
+//                    Vwe[i]=0;
+//                end
+//            end
+            
+//            if(cnt==0) Qwe=1'b1;
+//            else Qwe=1'b0;
+//        end
+//        else if(QupdateFlg || sDone)begin
+//            Qaddra=QKaddr;
+//            Qwe=1'b1;
+//        end
+//        else if(KupdateFlg) QKwe[cnt]=1;
+//        else begin
+//            Qwe=1'b0;
+//            Qaddra=Qaddr;
+//        end
+        
+        //Q
         if(we)begin
             Qaddra=QKaddr;
-        
-            for(int i=0;i<MAX_W*2;i++)begin
-                if(i==cnt)begin
-                    QKwe[i]=1;
-                    Vwe[i]=1;
-                end
-                else begin
-                    QKwe[i]=0;
-                    Vwe[i]=0;
-                end
-            end
             
             if(cnt==0) Qwe=1'b1;
             else Qwe=1'b0;
@@ -335,6 +366,47 @@ module hdl_top#(
         else begin
             Qwe=1'b0;
             Qaddra=Qaddr;
+        end
+        
+        
+        //K
+        if(we || KupdateFlg)begin
+            for(int i=0;i<MAX_W*2;i++)begin
+                if(i==cnt)begin
+                    QKwe[i]=1;
+                end
+                else begin
+                    QKwe[i]=0;
+                end
+            end
+        end
+        else begin
+            for(int i=0;i<MAX_W*2;i++)begin
+                QKwe[i]=0;
+            end
+        end
+        
+        //V
+        if(we || VupdateFlg)begin
+            Vaddra=Vaddr;
+            VIaddra=Vaddra;
+            
+            for(int i=0;i<MAX_W*2;i++)begin
+                if(i==cnt)begin
+                    Vwe[i]=1;
+                end
+                else begin
+                    Vwe[i]=0;
+                end
+            end
+        end
+        else begin
+            Vaddra=VAddr;
+            VIaddra=VIaddr;
+            
+            for(int i=0;i<MAX_W*2;i++)begin
+                Vwe[i]=0;
+            end
         end
         
     end
