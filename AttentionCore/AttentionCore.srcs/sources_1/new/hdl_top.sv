@@ -237,23 +237,21 @@ module hdl_top#(
             VIaddr<=H;
         end
         else begin
-            if(fsm==IDLE) fsm<=LOAD;
-            if(fsm==LOAD && cnt==MAX_W*2)begin
-                fsm<=EXEC;
-                cnt<=0;
-                
-                attVal<=1;
+            if(fsm==IDLE)begin
+                fsm<=LOAD;
+                QupdateFlg<=1;
             end
 
         end
+//        if(fsm==LOAD && ~QupdateFlg) QupdateFlg<=1;
         if(fsm!=IDLE)begin
             QKen<=1;
             Ven<=1;
         end
         
-        if(fsm==LOAD)begin
-            if(QKaddr==H-1) cnt<=cnt+1;
-        end
+//        if(fsm==LOAD)begin
+//            if(QKaddr==H-1 && ~QupdateFlg) cnt<=cnt+1;
+//        end
         
         if(sDone)begin
 //            QKen<=0;
@@ -266,7 +264,11 @@ module hdl_top#(
             Zflg<=1;         
         end
         if(zSumdone) divVal[0]<=1;
-        if(done) divVal<=0;
+        if(done)begin
+            divVal<=0;
+            attVal<=1;
+            done<=0;
+        end
         
         if(wZaddr==Heff-1)begin
             Zflg<=0;
@@ -284,32 +286,51 @@ module hdl_top#(
         if(rsVal) rsVal<=0;
         if(divVal>0) divVal<=divVal<<1;
         
+        
         if(sDone) QupdateFlg<=1;
         if(QupdateFlg && Qaddra==H-1)begin
             QupdateFlg<=0;
             KupdateFlg<=1;
         end
-        if(KupdateFlg && QKaddr==H-1)begin
-//            QupdateFlg<=0;
-            KupdateFlg<=0;
-            VupdateFlg<=1;
-//            cnt<=cnt+1;
+
+        if(KupdateFlg)begin                           
+            if(fsm==EXEC && QKaddr==H-1)begin
+                KupdateFlg<=0;
+                VupdateFlg<=1;
+            end
+            
+            if(fsm==LOAD)begin                        
+                if(QKaddr==H-1) cnt<=cnt+1;
+            
+                if(cnt==W*2)begin
+                    KupdateFlg<=0;
+                    VupdateFlg<=1;
+                    cnt<=0;
+                end
+            end
         end
-        
-//        if(Vdone) VupdateFlg<=1;
-        if(VupdateFlg && Vaddra==Heff-1) VupdateFlg<=0;
+            
+        if(VupdateFlg)begin
+            if(fsm==EXEC && Vaddr==Heff-1)begin
+                VupdateFlg<=0;
+                cnt<=cnt+1;
+            end
+            
+            if(fsm==LOAD)begin
+                if(Vaddr==Heff-1) cnt<=cnt+1;
+                
+                if(cnt==W*2)begin
+                    VupdateFlg<=0;
+                    attVal<=1;
+                    fsm<=EXEC;
+                    cnt<=0;
+                end
+            end
+        end
     end
     
     always_comb begin
         Heff=H*N/M;
-//        if(fsm==LOAD)begin
-//            Vaddra=Vaddr;
-//            VIaddra=Vaddra;
-//        end
-//        else begin
-//            Vaddra=VAddr;
-//            VIaddra=VIaddr;
-//        end
 
         Zwe=Vdone || Zflg;
         
@@ -325,41 +346,8 @@ module hdl_top#(
         end  
         scale=SCALE;
         
-//        if(we)begin
-//            Qaddra=QKaddr;
-        
-//            for(int i=0;i<MAX_W*2;i++)begin
-//                if(i==cnt)begin
-//                    QKwe[i]=1;
-//                    Vwe[i]=1;
-//                end
-//                else begin
-//                    QKwe[i]=0;
-//                    Vwe[i]=0;
-//                end
-//            end
-            
-//            if(cnt==0) Qwe=1'b1;
-//            else Qwe=1'b0;
-//        end
-//        else if(QupdateFlg || sDone)begin
-//            Qaddra=QKaddr;
-//            Qwe=1'b1;
-//        end
-//        else if(KupdateFlg) QKwe[cnt]=1;
-//        else begin
-//            Qwe=1'b0;
-//            Qaddra=Qaddr;
-//        end
-        
         //Q
-        if(we)begin
-            Qaddra=QKaddr;
-            
-            if(cnt==0) Qwe=1'b1;
-            else Qwe=1'b0;
-        end
-        else if(QupdateFlg || sDone)begin
+        if(QupdateFlg || sDone)begin
             Qaddra=QKaddr;
             Qwe=1'b1;
         end
@@ -370,7 +358,7 @@ module hdl_top#(
         
         
         //K
-        if(we || KupdateFlg)begin
+        if(KupdateFlg)begin
             for(int i=0;i<MAX_W*2;i++)begin
                 if(i==cnt)begin
                     QKwe[i]=1;
@@ -387,7 +375,7 @@ module hdl_top#(
         end
         
         //V
-        if(we || VupdateFlg)begin
+        if(VupdateFlg)begin
             Vaddra=Vaddr;
             VIaddra=Vaddra;
             

@@ -80,7 +80,6 @@ module tb_hdl_top();
 
         // 1. Initialize Default Values
         we = 0;
-        val = 0;
         QKaddr = 0;
         Vaddr = 0;
         Q = 0;
@@ -97,49 +96,67 @@ module tb_hdl_top();
         reset = 0;
         
         // Wait a couple of cycles for FSM to enter LOAD
-        repeat(2) @(posedge clk);
+//        repeat(2) @(posedge clk);
 
-        // 3. Pulse 'val' high for exactly one cycle
-        val = 1;
-        @(posedge clk);
-        val = 0;
-
-        // ---------------------------------------------------------
-        // 4. Simultaneous Transfer of Q, K (Dense) and V (Sparse)
+ // ---------------------------------------------------------
+        // 4. Sequential Transfer of Q, K, and V
         // ---------------------------------------------------------
         we = 1; 
-        for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
+        
+        // --- PHASE 4a: DENSE DATAPATH (Q ONLY) ---
+//        for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
             for (int addr = 0; addr < H; addr++) begin
                 
-                // --- DENSE DATAPATH (Q & K) ---
                 QKaddr = addr;
                 q_float = shortreal'((module_idx * H) + addr + 1);
-                k_float = shortreal'((module_idx * H) + addr + 2);
                 Q = $shortrealtobits(q_float); 
+                
+                // Keep K and V zeroed
+                K = 0; V = 0; Vaddr = 0; VI_in = 0;
+ 
+                @(posedge clk);
+            end
+//        end
+        // --- PHASE 4b: DENSE DATAPATH (K ONLY) ---
+        for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
+            for (int addr = 0; addr < H; addr++) begin
+                QKaddr = addr;
+                k_float = shortreal'((module_idx * H) + addr + 2);
                 K = $shortrealtobits(k_float);
                 
-                // --- SPARSE DATAPATH (V) ---
+                // Keep Q and V zeroed
+                Q = 0; V = 0; Vaddr = 0; VI_in = 0;
+                
+                @(posedge clk); 
+            end
+        end
+        
+        @(posedge clk); 
+        // --- PHASE 4c: SPARSE DATAPATH (V ONLY) ---
+        for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
+            for (int addr = 0; addr < H; addr+=2) begin
+                
                 block_idx = addr / M;
                 pos_in_block = addr % M;
                 
-                // Check if we are within the N non-zero elements of the current M block
                 if (pos_in_block < N) begin
-                    n_idx = pos_in_block; // Fetch new valid V data
+                    n_idx = pos_in_block; 
                 end else begin
-                    n_idx = N - 1; // Hold the last valid V data to safely overwrite & prevent corruption
+                    n_idx = N - 1; 
                 end
                 
-                // Example pattern for 2:4 sparsity: non-zero elements at index 0 and 2
                 offset = n_idx * 2; 
                 actual_pos = (block_idx * M) + offset;
                 
                 Vaddr = (block_idx * N) + n_idx; 
                 VI_in = offset; 
                 
-                v_float = shortreal'((module_idx * H) + actual_pos+1);
+                v_float = shortreal'((module_idx * H) + actual_pos + 1);
                 V = $shortrealtobits(v_float);
                 
-                // Wait for positive edge to register all matrices concurrently
+                // Keep Q and K zeroed
+                Q = 0; K = 0; QKaddr = 0;
+                
                 @(posedge clk); 
             end
         end
@@ -166,7 +183,7 @@ module tb_hdl_top();
                 QKaddr = addr;
                 
                 // Add a distinct offset (+1000) so the new Q row is easily visible in waveforms
-                q_float = shortreal'(1000 + addr + 1);
+                q_float = shortreal'(10 + addr + 1);
                 Q = $shortrealtobits(q_float); 
                 
                 // Drive 0s to K and V since we are only updating Q
@@ -190,7 +207,7 @@ module tb_hdl_top();
             QKaddr = addr;
             
             // Add a distinct offset (+2000) so the new K row is easily visible
-            k_float = shortreal'(500 + addr + 1);
+            k_float = shortreal'(5 + addr + 1);
             K = $shortrealtobits(k_float); 
             
             // Drive 0s to Q and V since we are only updating K
@@ -229,7 +246,7 @@ module tb_hdl_top();
             VI_in = offset; 
             
             // Add a distinct offset (+3000) so the new V row is easily visible
-            v_float = shortreal'(3000 + actual_pos + 1);
+            v_float = shortreal'((actual_pos + 1)*0.3);
             V = $shortrealtobits(v_float);
             
             // Zero out Q and K since we are only updating V
