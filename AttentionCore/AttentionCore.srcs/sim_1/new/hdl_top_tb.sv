@@ -144,7 +144,7 @@ module tb_hdl_top();
             end
         end
         
-        // 5. Loading Complete
+        // 5. Initial Loading Complete
         we = 0;
         QKaddr = 0;
         Vaddr = 0;
@@ -153,10 +153,41 @@ module tb_hdl_top();
         V = 0;
         VI_in = 0;
 
-        // Wait for processing to complete
-        wait(vDone);
-        #500;
-        $finish;
+        // ---------------------------------------------------------
+        // 6. Wait for sDone and Transfer New Row of Q
+        // ---------------------------------------------------------
+        @(posedge sDone); // Wait for the sDone pulse to arrive
+        
+//        we = 1; 
+//        for (module_idx = 0; module_idx < MAX_W * 2; module_idx++) begin
+            for (int addr = 0; addr < H; addr++) begin
+                @(posedge clk); 
+                // --- DENSE DATAPATH (Q ONLY) ---
+                QKaddr = addr;
+                
+                // Add a distinct offset (+1000) so the new Q row is easily visible in waveforms
+                q_float = shortreal'(1000 + addr + 1);
+                Q = $shortrealtobits(q_float); 
+                
+                // Drive 0s to K and V since we are only updating Q
+                K = 0;
+                V = 0;
+                Vaddr = 0;
+                VI_in = 0;
+                
+                
+            end
+//        end
+        @(posedge clk);
+        // 7. Loading Complete for the new Q row
+//        we = 0;
+        QKaddr = 0;
+        Q = 0;
+
+        // Wait for final processing to complete
+//        wait(done);
+//        #500;
+//        $finish;
     end
 
 endmodule

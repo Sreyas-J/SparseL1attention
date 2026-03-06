@@ -47,7 +47,7 @@ module hdl_top#(
 //    localparam int DIVS = (MAX_H + DIV_LATENCY - 1) / DIV_LATENCY;
 //    localparam int DIVS_BITS = (DIVS == 0) ? 1 : $clog2(DIVS + 1);
     
-    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone;
+    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg;
     logic [$clog2(MAX_H)-1:0] wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],Qaddra,Qaddr;
     logic [MAX_H-1:0] divVal;
     logic [$clog2(MAX_W*2):0] cnt;
@@ -224,12 +224,14 @@ module hdl_top#(
     always_ff@(posedge clk)begin
         if(reset)begin
             cnt<=0;
+            
             fsm<=IDLE;
-            wZaddr<=0;
+            QupdateFlg<=0;
             Zflg<=0;
             zSumVal<=0;
             divVal<=0;
             
+            wZaddr<=0;
             VIaddr<=H;
         end
         else begin
@@ -252,7 +254,7 @@ module hdl_top#(
         end
         
         if(sDone)begin
-            QKen<=0;
+//            QKen<=0;
             vVal<=1;
             Zen<=1;
             rsVal<=1;
@@ -279,6 +281,9 @@ module hdl_top#(
         if(zSumVal) zSumVal<=0;
         if(rsVal) rsVal<=0;
         if(divVal>0) divVal<=divVal<<1;
+        
+        if(sDone) QupdateFlg<=1;
+        if(QupdateFlg && Qaddra==H-1) QupdateFlg<=0;
     end
     
     always_comb begin
@@ -322,6 +327,10 @@ module hdl_top#(
             
             if(cnt==0) Qwe=1'b1;
             else Qwe=1'b0;
+        end
+        else if(QupdateFlg || sDone)begin
+            Qaddra=QKaddr;
+            Qwe=1'b1;
         end
         else begin
             Qwe=1'b0;
