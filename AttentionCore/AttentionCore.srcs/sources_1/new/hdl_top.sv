@@ -28,8 +28,8 @@ module hdl_top#(
 //    localparam int DIVS = (MAX_H + DIV_LATENCY - 1) / DIV_LATENCY;
 //    localparam int DIVS_BITS = (DIVS == 0) ? 1 : $clog2(DIVS + 1);
     
-    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg,VupdateFlg,Vdone;
-    logic [$clog2(MAX_H)-1:0] wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],Qaddra,Qaddr,outAddr;
+    logic attVal,vVal,zSumVal,rsVal,QKen,Ven,Zen,QKwe[0:MAX_W*2-1],Vwe[0:MAX_W*2-1],Zwe,Qwe,Zflg,zSumdone,RSdone,QupdateFlg,KupdateFlg,VupdateFlg,Vdone,ZclrFlg;
+    logic [$clog2(MAX_H)-1:0] wZaddr,rZaddr[0:MAX_W*2-1],Zaddr[0:MAX_W*2-1],ZclrAddr,Qaddra,Qaddr,outAddr;
     logic [MAX_H-1:0] divVal;
     logic [$clog2(MAX_W*2):0] cnt;
     logic [$clog2(MAX_H)-1:0] Vaddra,VAddr,VIaddra,VIaddr;
@@ -46,7 +46,7 @@ module hdl_top#(
     } fsm_state_t;
     
     fsm_state_t fsm;
-    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],Qout,prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],Ssum,Q,K,V,out [0:MAX_H-1];
+    logic [DATA_WIDTH-1:0] scale,s[0:MAX_W*2-1],Vdouta[0:MAX_W*2-1],Qout,prod[0:MAX_W*2-1],Zdout[0:MAX_W*2-1],zSum[0:MAX_H-1],Ssum,Q,K,V,out [0:MAX_H-1],Zdin[0:MAX_W*2-1];
     
     Q q (
       .clka(clk),    // input wire clka
@@ -106,7 +106,7 @@ module hdl_top#(
               .ena(Zen),      // input wire ena
               .wea(Zwe),      // input wire [0 : 0] wea
               .addra(Zaddr[i]),  // input wire [1 : 0] addra
-              .dina(prod[i]),    // input wire [31 : 0] dina
+              .dina(Zdin[i]),    // input wire [31 : 0] dina
               .douta(Zdout[i])  // output wire [31 : 0] douta
             );
         end
@@ -211,12 +211,14 @@ module hdl_top#(
             KupdateFlg<=0;
             VupdateFlg<=0;
             Zflg<=0;
+            ZclrFlg<=0;
             zSumVal<=0;
             divVal<=0;
             
             wZaddr<=0;
             VIaddr<=MAX_H;
             outAddr<=0;
+            ZclrAddr<=0;
         end
         else begin
             if(fsm==IDLE)begin
@@ -258,7 +260,7 @@ module hdl_top#(
             outAddr<=outAddr+1;
         end
         
-        if(wZaddr==Heff-1)begin
+        if(wZaddr==Heff-1 && Zflg)begin
             Zflg<=0;
             wZaddr<=0;
             zSumVal<=1;
@@ -269,7 +271,11 @@ module hdl_top#(
         if(VIaddr<MAX_H) VIaddr<=VIaddr+1;
         
         if(vVal) vVal<=0;
-        if(attVal) attVal<=0;
+        if(attVal)begin
+            attVal<=0;
+            ZclrAddr<=1;
+            ZclrFlg<=1;
+        end
         if(zSumVal) zSumVal<=0;
         if(rsVal) rsVal<=0;
         if(divVal>0) divVal<=divVal<<1;
@@ -315,6 +321,11 @@ module hdl_top#(
                 end
             end
         end
+        
+        if(ZclrFlg)begin
+            if(ZclrAddr==MAX_H-1) ZclrFlg<=0;
+            ZclrAddr<=ZclrAddr+1;
+        end
     end
     
     always_comb begin
@@ -326,11 +337,18 @@ module hdl_top#(
     
         Heff=MAX_H*N/M;
 
-        Zwe=Vdone || Zflg;
+        Zwe=Vdone || Zflg || ZclrFlg || attVal;
         
-        if(Zwe)begin
+        if(ZclrFlg || attVal)begin
+            for(int i=0;i<MAX_W*2;i++)begin
+                Zaddr[i]=ZclrAddr;
+                Zdin[i]=0;
+            end
+        end
+        else if(Zwe)begin
             for(int i=0;i<MAX_W*2;i++)begin
                 Zaddr[i]=( { {$clog2(MAX_H){1'b0}},wZaddr}*N)/M+VI_out[i];
+                Zdin[i]=prod[i];
             end
         end
         else begin
